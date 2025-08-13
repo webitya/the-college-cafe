@@ -7,6 +7,8 @@ import SchoolIcon from "@mui/icons-material/School"
 import TrendingUpIcon from "@mui/icons-material/TrendingUp"
 import GroupIcon from "@mui/icons-material/Group"
 import StarIcon from "@mui/icons-material/Star"
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
 export default function HomePageHero() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -144,6 +146,14 @@ export default function HomePageHero() {
     router.push(`/colleges?search=${encodeURIComponent(suggestion)}`)
   }
 
+  const goToPrevious = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + heroImages.length) % heroImages.length)
+  }
+
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length)
+  }
+
   return (
     <section className="bg-gradient-to-r from-yellow-50 to-white h-[90vh] px-4 sm:px-6 lg:px-8 flex lg:items-center">
       <div className="max-w-7xl mx-auto w-full">
@@ -196,7 +206,7 @@ export default function HomePageHero() {
                         onClick={() => handleSuggestionClick(suggestion)}
                         className="px-3 lg:px-4 py-2 hover:bg-yellow-50 cursor-pointer border-b border-gray-100 last:border-b-0 flex items-center"
                       >
-                        <SearchIcon className="text-gray-400 mr-2 w-3 h-3" />
+                        <SearchIcon className="text-gray-400 mr-2 w-3 h-3 lg:w-3 lg:h-3" />
                         <span className="text-gray-700 text-xs">{suggestion}</span>
                       </div>
                     ))}
@@ -208,20 +218,20 @@ export default function HomePageHero() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/colleges"
-                  className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 lg:px-5 lg:py-2.5 rounded-full text-sm font-semibold transition-colors duration-200 shadow-lg text-center"
+                  className="bg-yellow-400/20 backdrop-blur-md border border-yellow-300/30 hover:bg-yellow-400/30 hover:border-yellow-400/50 text-yellow-800 px-6 py-3 lg:px-5 lg:py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl text-center"
                 >
                   Explore Colleges
                 </Link>
                 <div className="flex gap-3">
                   <Link
                     href="/jee"
-                    className="flex-1 sm:flex-none bg-white hover:bg-gray-50 text-gray-800 px-4 py-3 lg:px-4 lg:py-2.5 rounded-full text-sm font-semibold border-2 border-gray-300 transition-colors duration-200 text-center"
+                    className="flex-1 sm:flex-none bg-yellow-100/30 backdrop-blur-md border border-yellow-200/40 hover:bg-yellow-200/40 hover:border-yellow-300/60 text-yellow-700 px-4 py-3 lg:px-4 lg:py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg text-center"
                   >
                     JEE Prep
                   </Link>
                   <Link
                     href="/neet"
-                    className="flex-1 sm:flex-none bg-white hover:bg-gray-50 text-gray-800 px-4 py-3 lg:px-4 lg:py-2.5 rounded-full text-sm font-semibold border-2 border-gray-300 transition-colors duration-200 text-center"
+                    className="flex-1 sm:flex-none bg-yellow-100/30 backdrop-blur-md border border-yellow-200/40 hover:bg-yellow-200/40 hover:border-yellow-300/60 text-yellow-700 px-4 py-3 lg:px-4 lg:py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg text-center"
                   >
                     NEET Prep
                   </Link>
@@ -259,7 +269,7 @@ export default function HomePageHero() {
 
           {/* Right Side - Auto-changing Images */}
           <div className="hidden lg:block relative">
-            <div className="relative h-64 lg:h-72 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl">
               {heroImages.map((image, index) => (
                 <div
                   key={index}
@@ -277,6 +287,22 @@ export default function HomePageHero() {
 
               {/* Image overlay with gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+
+              <button
+                onClick={goToPrevious}
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-8 h-8 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
+                aria-label="Previous image"
+              >
+                <ArrowBackIosIcon className="w-4 h-4 ml-0.5" />
+              </button>
+
+              <button
+                onClick={goToNext}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-8 h-8 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110"
+                aria-label="Next image"
+              >
+                <ArrowForwardIosIcon className="w-4 h-4" />
+              </button>
 
               {/* Image indicators */}
               <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
