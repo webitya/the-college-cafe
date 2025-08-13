@@ -1,31 +1,49 @@
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import TwitterIcon from "@mui/icons-material/Twitter"
+import InstagramIcon from "@mui/icons-material/Instagram"
+import YouTubeIcon from "@mui/icons-material/YouTube"
+import WhatsAppIcon from "@mui/icons-material/WhatsApp"
 
 export default function AboutTeam() {
   const teamMembers = [
     {
-      name: "Rajesh Kumar",
-      role: "Founder & CEO",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Educational consultant with 15+ years of experience in higher education guidance.",
+      name: "Rajnish Maurya",
+      role: "Founder",
+      image: "/founder-portrait.png",
+      description: "Visionary leader with extensive experience in educational technology and student guidance.",
+      socialLinks: {
+        linkedin: "https://linkedin.com/in/rajnish-maurya",
+        twitter: "https://twitter.com/rajnish_maurya",
+        instagram: "https://instagram.com/rajnish.maurya",
+        youtube: "https://youtube.com/@rajnishmaurya",
+        whatsapp: "https://wa.me/919876543210",
+      },
     },
     {
-      name: "Priya Sharma",
-      role: "Head of Content",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Former college counselor specializing in engineering and medical college admissions.",
+      name: "Aditya Kumar",
+      role: "CEO",
+      image: "/professional-ceo-portrait.png",
+      description: "Strategic leader driving innovation in college admission guidance and educational services.",
+      socialLinks: {
+        linkedin: "https://linkedin.com/in/aditya-kumar-ceo",
+        twitter: "https://twitter.com/aditya_kumar",
+        instagram: "https://instagram.com/aditya.kumar",
+        youtube: "https://youtube.com/@adityakumar",
+        whatsapp: "https://wa.me/919876543211",
+      },
     },
     {
-      name: "Amit Singh",
-      role: "Technology Lead",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Tech expert ensuring our platform delivers the best user experience for students.",
-    },
-    {
-      name: "Sneha Gupta",
-      role: "Student Relations",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Dedicated to providing personalized support and guidance to every student.",
+      name: "Rajshakher Pathak",
+      role: "Co-founder",
+      image: "/co-founder-portrait.png",
+      description: "Educational expert specializing in engineering and medical college admissions across India.",
+      socialLinks: {
+        linkedin: "https://linkedin.com/in/rajshakher-pathak",
+        twitter: "https://twitter.com/rajshakher_pathak",
+        instagram: "https://instagram.com/rajshakher.pathak",
+        youtube: "https://youtube.com/@rajshakherpathak",
+        whatsapp: "https://wa.me/919876543212",
+      },
     },
   ]
 
@@ -40,7 +58,7 @@ export default function AboutTeam() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-center">
               <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
@@ -54,8 +72,46 @@ export default function AboutTeam() {
               <p className="text-yellow-600 font-medium mb-3">{member.role}</p>
               <p className="text-gray-600 text-sm mb-4">{member.description}</p>
               <div className="flex justify-center space-x-3">
-                <LinkedInIcon className="text-gray-400 hover:text-blue-600 cursor-pointer" />
-                <TwitterIcon className="text-gray-400 hover:text-blue-400 cursor-pointer" />
+                <a
+                  href={member.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-600 transition-colors duration-200"
+                >
+                  <LinkedInIcon className="w-6 h-6" />
+                </a>
+                <a
+                  href={member.socialLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                >
+                  <TwitterIcon className="w-6 h-6" />
+                </a>
+                <a
+                  href={member.socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-pink-500 transition-colors duration-200"
+                >
+                  <InstagramIcon className="w-6 h-6" />
+                </a>
+                <a
+                  href={member.socialLinks.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-red-600 transition-colors duration-200"
+                >
+                  <YouTubeIcon className="w-6 h-6" />
+                </a>
+                <a
+                  href={member.socialLinks.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-green-500 transition-colors duration-200"
+                >
+                  <WhatsAppIcon className="w-6 h-6" />
+                </a>
               </div>
             </div>
           ))}
