@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { Send, CheckCircle, AlertCircle } from "@mui/icons-material"
+import { Send, CheckCircle, Error } from "@mui/icons-material"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ export default function ContactForm() {
 
       {status === "error" && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
-          <AlertCircle className="text-red-600 mr-3" />
+          <Error className="text-red-600 mr-3" />
           <p className="text-red-800">{message}</p>
         </div>
       )}
