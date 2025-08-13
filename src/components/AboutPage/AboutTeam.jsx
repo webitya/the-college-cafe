@@ -9,7 +9,7 @@ export default function AboutTeam() {
     {
       name: "Rajnish Maurya",
       role: "Founder",
-      image: "/founder-portrait.png",
+      image: "https://laser360clinic.com/wp-content/uploads/2020/08/user-image.jpg",
       description: "Visionary leader with extensive experience in educational technology and student guidance.",
       socialLinks: {
         linkedin: "https://linkedin.com/in/rajnish-maurya",
@@ -22,7 +22,7 @@ export default function AboutTeam() {
     {
       name: "Aditya Kumar",
       role: "CEO",
-      image: "/professional-ceo-portrait.png",
+      image: "https://laser360clinic.com/wp-content/uploads/2020/08/user-image.jpg",
       description: "Strategic leader driving innovation in college admission guidance and educational services.",
       socialLinks: {
         linkedin: "https://linkedin.com/in/aditya-kumar-ceo",
@@ -35,7 +35,7 @@ export default function AboutTeam() {
     {
       name: "Rajshakher Pathak",
       role: "Co-founder",
-      image: "/co-founder-portrait.png",
+      image: "https://laser360clinic.com/wp-content/uploads/2020/08/user-image.jpg",
       description: "Educational expert specializing in engineering and medical college admissions across India.",
       socialLinks: {
         linkedin: "https://linkedin.com/in/rajshakher-pathak",
