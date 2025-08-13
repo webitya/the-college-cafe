@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import EmailIcon from "@mui/icons-material/Email"
 import PhoneIcon from "@mui/icons-material/Phone"
@@ -85,23 +87,38 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-600 text-sm">© 2024 THE COLLEGE CAFE. All rights reserved.</p>
 
-            <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 px-4 py-2 rounded-lg border border-yellow-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
-              <p className="text-sm text-gray-700 font-medium">
-                <span className="text-gray-600">Website Designed & Managed by</span>{" "}
-                <Link
-                  href="https://webitya.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-yellow-700 font-semibold hover:text-yellow-800 underline decoration-2 underline-offset-2 hover:decoration-yellow-600 transition-all duration-200"
+            <p className="text-sm text-gray-600">
+              Website Designed & Managed by{" "}
+              <Link href="https://webitya.com" target="_blank" rel="noopener noreferrer" className="font-semibold">
+                <span
+                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse"
+                  style={{
+                    backgroundSize: "200% 200%",
+                    animation: "gradientShift 3s ease-in-out infinite",
+                  }}
                 >
                   Webitya
-                </Link>
-              </p>
-              <p className="text-xs text-gray-500 mt-1 font-mono">Professional Web Development Solutions</p>
-            </div>
+                </span>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Custom CSS for gradient animation */}
+      <style jsx>{`
+        @keyframes gradientShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
     </footer>
   )
 }
