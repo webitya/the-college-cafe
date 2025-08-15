@@ -1,6 +1,8 @@
 import DonateHero from "../../components/Donate/DonateHero"
 import DonateForm from "../../components/Donate/DonateForm"
 import DonateImpact from "../../components/Donate/DonateImpact"
+import Header from "@/components/shared/Header"
+import Footer from "@/components/shared/Footer"
 
 export const metadata = {
   title: "Donate Now - Support Education | THE COLLEGE CAFE",
@@ -10,10 +12,14 @@ export const metadata = {
 
 export default function DonatePage() {
   return (
+ <>
+    <Header/>
     <div className="min-h-screen bg-white">
       <DonateHero />
       <DonateForm />
       <DonateImpact />
     </div>
+    <Footer/>
+ </>
   )
 }
