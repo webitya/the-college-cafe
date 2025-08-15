@@ -1,25 +1,119 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CurrentAffairsHero from "../../components/CurrentAffairs/CurrentAffairsHero"
 import CurrentAffairsCalendar from "../../components/CurrentAffairs/CurrentAffairsCalendar"
 import CurrentAffairsList from "../../components/CurrentAffairs/CurrentAffairsList"
-import Header from "@/components/shared/Header"
-import Footer from "@/components/shared/Footer"
+import { getTodaysDate, getAllAvailableDatesFlat } from "../../lib/currentAffairsLoader"
+import { Calendar, List } from "lucide-react"
+// import Header from "@/components/shared/Header"
+// import Footer from "@/components/shared/Footer"
 
-export default function CurrentAffairsPage() {
-  const today = new Date().toISOString().split("T")[0]
-  const [selectedDate, setSelectedDate] = useState(today >= "2025-08-05" ? today : "2025-08-05")
+
+const CurrentAffairsPage = () => {
+  const [selectedDate, setSelectedDate] = useState("")
+  const [viewMode, setViewMode] = useState("calendar")
+
+  useEffect(() => {
+    // Set today's date as default, or first available date if today's not available
+    const todaysDate = getTodaysDate()
+    const availableDates = getAllAvailableDatesFlat()
+
+    if (availableDates.includes(todaysDate)) {
+      setSelectedDate(todaysDate)
+    } else if (availableDates.length > 0) {
+      // Default to August 14, 2025 or first available date
+      const defaultDate = availableDates.includes("14-august-2025") ? "14-august-2025" : availableDates[0]
+      setSelectedDate(defaultDate)
+    }
+  }, [])
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date)
+  }
+
+  const formatSelectedDate = () => {
+    if (!selectedDate) return "No date selected"
+    const [day, month, year] = selectedDate.split("-")
+    const monthNames = {
+      january: "Jan",
+      february: "Feb",
+      march: "Mar",
+      april: "Apr",
+      may: "May",
+      june: "Jun",
+      july: "Jul",
+      august: "Aug",
+      september: "Sep",
+      october: "Oct",
+      november: "Nov",
+      december: "Dec",
+    }
+    return `${monthNames[month]} ${Number.parseInt(day)}`
+  }
 
   return (
-  <>
-  <Header/>
-    <main className="min-h-screen bg-white">
+ <>
+ {/* <Header/> */}
+    <div className="min-h-screen bg-gray-50">
       <CurrentAffairsHero />
-      <CurrentAffairsCalendar selectedDate={selectedDate} onDateSelect={setSelectedDate} today={today} />
-      <CurrentAffairsList selectedDate={selectedDate} />
-    </main>
-    <Footer/>
-  </>
+
+      {/* Sticky Navigation */}
+      <div className="sticky top-0 bg-white border-b border-gray-200 z-10 px-4 py-2">
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setViewMode("calendar")}
+              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center gap-1 ${
+                viewMode === "calendar" ? "bg-purple-100 text-purple-700" : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              <Calendar size={16} />
+              Calendar
+            </button>
+            <button
+              onClick={() => setViewMode("list")}
+              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center gap-1 ${
+                viewMode === "list" ? "bg-purple-100 text-purple-700" : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              <List size={16} />
+              List
+            </button>
+          </div>
+          <div className="text-sm font-medium text-gray-700">{formatSelectedDate()}</div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Calendar/List View */}
+          <div className="lg:col-span-1">
+            {viewMode === "calendar" ? (
+              <CurrentAffairsCalendar selectedDate={selectedDate} onDateSelect={handleDateSelect} />
+            ) : (
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="font-semibold text-sm text-gray-900 mb-3">Quick Date Selection</h3>
+                <CurrentAffairsList selectedDate={selectedDate} onDateSelect={handleDateSelect} />
+              </div>
+            )}
+          </div>
+
+          {/* Current Affairs Content */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <h2 className="font-bold text-lg text-gray-900 mb-4">Current Affairs - {formatSelectedDate()}</h2>
+              <CurrentAffairsList selectedDate={selectedDate} onDateSelect={handleDateSelect} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ {/* <Footer/> */}
+
+ </>
   )
 }
+
+export default CurrentAffairsPage

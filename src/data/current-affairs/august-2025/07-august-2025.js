@@ -1,57 +1,36 @@
 export const currentAffairs = [
   {
-    id: 11,
-    title: "New Education Policy Implementation Phase 2",
+    id: "aug-07-1",
+    title: "National Education Technology Platform Launched",
+    summary: "Comprehensive digital learning platform integrates AI-powered personalized education for all students.",
+    content:
+      "The Ministry of Education launched the National Education Technology Platform (NETP), an AI-powered digital learning ecosystem designed to provide personalized education to over 25 crore students across India. The platform integrates virtual classrooms, adaptive learning modules, real-time assessment tools, and multilingual content in 22 Indian languages. NETP aims to bridge the digital divide in education and ensure quality learning outcomes regardless of geographical location or socio-economic background.",
     category: "Education",
-    date: "2025-08-07",
-    summary: "Universities begin adopting flexible degree programs",
-    content:
-      "Over 200 universities across India started implementing the second phase of the New Education Policy focusing on multidisciplinary education and flexible degree structures. Students can now pursue multiple subjects across different faculties.",
     importance: "High",
-    tags: ["Education", "Policy", "Universities"],
+    date: "2025-08-07",
+    tags: ["EdTech", "DigitalLearning", "AI", "PersonalizedEducation", "DigitalIndia"],
   },
   {
-    id: 12,
-    title: "Solar Power Capacity Reaches 100 GW Milestone",
-    category: "Energy",
-    date: "2025-08-07",
-    summary: "India achieves significant renewable energy target ahead of schedule",
+    id: "aug-07-2",
+    title: "India's First Indigenous Aircraft Carrier INS Vikrant Completes Sea Trials",
+    summary:
+      "Indigenously built aircraft carrier successfully completes final phase of sea trials before commissioning.",
     content:
-      "India's solar power generation capacity crossed the 100 GW milestone two years ahead of the original target. The achievement positions India as the third-largest solar power producer globally.",
+      "INS Vikrant, India's first indigenously designed and built aircraft carrier, has successfully completed its final phase of sea trials in the Arabian Sea. The 45,000-tonne carrier demonstrated its capability to operate various aircraft including MiG-29K fighters and helicopters. The vessel incorporates advanced automation systems, state-of-the-art sensors, and indigenous weapons systems. INS Vikrant will significantly enhance India's naval capabilities and maritime security in the Indian Ocean region.",
+    category: "Defense",
     importance: "High",
-    tags: ["Solar Energy", "Renewable Energy", "Milestone"],
+    date: "2025-08-07",
+    tags: ["INSVikrant", "AircraftCarrier", "IndigenousDefense", "NavalPower", "MakeInIndia"],
   },
   {
-    id: 13,
-    title: "Startup India Initiative Crosses 1 Million Registrations",
-    category: "Business",
-    date: "2025-08-07",
-    summary: "Government program reaches historic milestone in entrepreneurship",
+    id: "aug-07-3",
+    title: "Unified Payments Interface Processes 10 Billion Transactions",
+    summary: "UPI achieves record monthly transaction volume, reinforcing India's digital payment leadership.",
     content:
-      "The Startup India initiative celebrated registering its one millionth startup marking a significant milestone in the country's entrepreneurial journey. The program has facilitated over 500 billion rupees in funding.",
+      "The Unified Payments Interface (UPI) processed over 10 billion transactions in a single month for the first time, with a total value exceeding ₹15 lakh crores. The milestone reflects India's rapid adoption of digital payments and the success of financial inclusion initiatives. UPI now facilitates transactions in multiple countries including UAE, Singapore, and Nepal through international partnerships. The National Payments Corporation of India announced plans to introduce new features including offline payments and voice-based transactions.",
+    category: "Finance",
     importance: "Medium",
-    tags: ["Startups", "Entrepreneurship", "Business"],
-  },
-  {
-    id: 14,
-    title: "Ancient Temple Discovery in Odisha",
-    category: "Archaeology",
     date: "2025-08-07",
-    summary: "1000-year-old temple complex found during excavation",
-    content:
-      "Archaeological Survey of India discovered a well-preserved temple complex dating back to the 11th century in Odisha. The site contains intricate sculptures and inscriptions providing insights into medieval Indian architecture.",
-    importance: "Medium",
-    tags: ["Archaeology", "Heritage", "Discovery"],
-  },
-  {
-    id: 15,
-    title: "India Launches Weather Satellite INSAT-4D",
-    category: "Science & Technology",
-    date: "2025-08-07",
-    summary: "Advanced meteorological satellite enhances weather forecasting",
-    content:
-      "ISRO successfully launched INSAT-4D a next-generation weather satellite equipped with advanced sensors for improved cyclone tracking and weather prediction. The satellite will enhance disaster preparedness capabilities.",
-    importance: "High",
-    tags: ["ISRO", "Satellite", "Weather Forecasting"],
+    tags: ["UPI", "DigitalPayments", "FinTech", "FinancialInclusion", "NPCI"],
   },
 ]
