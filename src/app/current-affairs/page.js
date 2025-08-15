@@ -6,8 +6,8 @@ import CurrentAffairsCalendar from "../../components/CurrentAffairs/CurrentAffai
 import CurrentAffairsList from "../../components/CurrentAffairs/CurrentAffairsList"
 import { getTodaysDate, getAllAvailableDatesFlat } from "../../lib/currentAffairsLoader"
 import { Calendar, List } from "lucide-react"
-// import Header from "@/components/shared/Header"
-// import Footer from "@/components/shared/Footer"
+import Header from "../../components/shared/Header"
+import Footer from "../../components/shared/Footer"
 
 
 const CurrentAffairsPage = () => {
@@ -54,7 +54,7 @@ const CurrentAffairsPage = () => {
 
   return (
  <>
- {/* <Header/> */}
+ <Header/>
     <div className="min-h-screen bg-gray-50">
       <CurrentAffairsHero />
 
@@ -110,7 +110,7 @@ const CurrentAffairsPage = () => {
         </div>
       </div>
     </div>
- {/* <Footer/> */}
+ <Footer/>
 
  </>
   )
