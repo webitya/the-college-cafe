@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import ThankYouContent from "../../../components/Donate/ThankYouContent"
-import Header from "@/components/shared/Header"
-import Footer from "@/components/shared/Footer"
+import Header from "../../../components/shared/Header"
+import Footer from "../../../components/shared/Footer"
 
 export const metadata = {
   title: "Thank You for Your Donation - THE COLLEGE CAFE",
