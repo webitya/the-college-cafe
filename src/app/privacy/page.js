@@ -3,8 +3,8 @@ export const metadata = {
   description: "Privacy policy for THE COLLEGE CAFE platform and services",
 }
 
-import Header from "../../components/common/Header"
-import Footer from "../../components/common/Footer"
+import Header from "../../components/shared/Header"
+import Footer from "../../components/shared/Footer"
 
 export default function Privacy() {
   return (

@@ -3,8 +3,8 @@ export const metadata = {
   description: "Terms and conditions for using THE COLLEGE CAFE services and platform",
 }
 
-import Header from "../../components/common/Header"
-import Footer from "../../components/common/Footer"
+import Header from "../../components/shared/Header"
+import Footer from "../../components/shared/Footer"
 
 export default function Terms() {
   return (
