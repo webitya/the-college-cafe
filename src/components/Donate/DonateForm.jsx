@@ -69,6 +69,8 @@ export default function DonateForm() {
           description: "Donation for Educational Support",
           order_id: data.orderId,
           handler: async (response) => {
+            console.log("[v0] Payment successful, verifying and sending emails...")
+
             // Verify payment and send thank you email
             const verifyResponse = await fetch("/api/verify-donation", {
               method: "POST",
@@ -82,18 +84,18 @@ export default function DonateForm() {
             })
 
             const verifyData = await verifyResponse.json()
+            console.log("[v0] Verification response:", verifyData)
 
             if (verifyData.success) {
-              alert("Thank you for your generous donation! A confirmation email has been sent to you.")
-              setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                amount: "",
-                customAmount: "",
-                message: "",
+              const params = new URLSearchParams({
+                payment_id: response.razorpay_payment_id,
+                amount: formData.amount,
+                name: formData.name,
               })
-              setSelectedAmount("")
+              window.location.href = `/donate/thank-you?${params.toString()}`
+            } else {
+              console.error("[v0] Payment verification failed:", verifyData.error)
+              alert("Payment successful but there was an issue with confirmation. Please contact support.")
             }
           },
           prefill: {
