@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/course/[courseId]/page.js", "src/app/course/[courseId]/lesson/[day]/page.jsx", "src/app/resources/loading.jsx", "src/app/resources/page.jsx"  ],
+, "src/app/course/[courseId]/page.js", "src/app/course/[courseId]/lesson/[day]/page.jsx", "src/app/resources/loading.jsx", "src/app/resources/page.jsx", "src/components/theme-provider.jsx"  ],
   "exclude": [
     "node_modules"
   ]
