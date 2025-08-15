@@ -51,12 +51,12 @@ export const loadCurrentAffairsData = async (date) => {
   }
 
   try {
-    const module = await import(`../data/current-affairs/${dateInfo.month}/${dateInfo.file}.js`)
-    if (module.currentAffairs) {
-      if (Array.isArray(module.currentAffairs)) {
-        return { events: module.currentAffairs }
-      } else if (module.currentAffairs.events) {
-        return module.currentAffairs
+    const importedModule = await import(`../data/current-affairs/${dateInfo.month}/${dateInfo.file}.js`)
+    if (importedModule.currentAffairs) {
+      if (Array.isArray(importedModule.currentAffairs)) {
+        return { events: importedModule.currentAffairs }
+      } else if (importedModule.currentAffairs.events) {
+        return importedModule.currentAffairs
       }
     }
     return { events: [] }
