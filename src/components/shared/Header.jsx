@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useState } from "react"
 import MenuIcon from "@mui/icons-material/Menu"
 import SchoolIcon from "@mui/icons-material/School"
+import DonateButton from "./DonateButton"
 import NavbarDrawer from "./NavbarDrawer"
 
 export default function Header() {
@@ -23,14 +24,12 @@ export default function Header() {
       <header className="bg-white shadow-md sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <SchoolIcon className="text-yellow-500 text-3xl" />
               <span className="text-xl font-bold text-gray-800">THE COLLEGE CAFE</span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex space-x-8 items-center">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -40,14 +39,18 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+              <DonateButton variant="primary" size="medium" />
             </nav>
 
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 transition-colors duration-200"
-            >
-              <MenuIcon />
-            </button>
+            <div className="md:hidden flex items-center space-x-2">
+              <DonateButton variant="primary" size="small" showText={false} />
+              <button
+                onClick={() => setIsDrawerOpen(true)}
+                className="p-2 rounded-md text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 transition-colors duration-200"
+              >
+                <MenuIcon />
+              </button>
+            </div>
           </div>
         </div>
       </header>

@@ -1,4 +1,5 @@
 import { Inter, Poppins } from "next/font/google"
+import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,10 +24,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      </head>
       <body className="font-sans bg-white text-gray-800 antialiased">{children}</body>
     </html>
   )
 }
-
-
-import './globals.css'

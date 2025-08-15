@@ -9,6 +9,7 @@ import WorkIcon from "@mui/icons-material/Work"
 import NewspaperIcon from "@mui/icons-material/Newspaper"
 import ScienceIcon from "@mui/icons-material/Science"
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital"
+import DonateButton from "./DonateButton"
 
 export default function NavbarDrawer({ isOpen, onClose }) {
   const navItems = [
@@ -66,7 +67,13 @@ export default function NavbarDrawer({ isOpen, onClose }) {
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gray-50">
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-2">Your Gateway to Higher Education</p>
+            <p className="text-sm text-gray-600 mb-4">Your Gateway to Higher Education</p>
+            <div className="mb-4">
+              <DonateButton
+                variant="drawer"
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+              />
+            </div>
             <div className="flex justify-center space-x-4">
               <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
               <div className="w-2 h-2 bg-yellow-300 rounded-full"></div>
