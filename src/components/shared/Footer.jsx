@@ -45,6 +45,11 @@ export default function Footer() {
                   Jobs
                 </a>
               </li>
+                  <li>
+                <a href="/current-affairs" className="hover:text-yellow-500">
+                  Current Affairs
+                </a>
+              </li>
               <li>
                 <a href="/scholarships" className="hover:text-yellow-500">
                   Scholarships
