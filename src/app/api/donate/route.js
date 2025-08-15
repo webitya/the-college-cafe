@@ -1,12 +1,27 @@
 import Razorpay from "razorpay"
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-})
+let razorpay = null
+
+// Only initialize Razorpay if environment variables are available
+if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+  razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  })
+}
 
 export async function POST(request) {
   try {
+    if (!razorpay) {
+      return Response.json(
+        {
+          success: false,
+          error: "Payment gateway not configured. Please contact administrator.",
+        },
+        { status: 500 },
+      )
+    }
+
     const { name, email, phone, amount, message } = await request.json()
 
     // Create Razorpay order
