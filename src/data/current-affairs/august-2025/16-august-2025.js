@@ -31,6 +31,6 @@ export const currentAffairs = [
     category: "Healthcare",
     importance: "High",
     date: "2025-08-16",
-    tags: ["UniversalHealthcare", "AyushmanBharat", "HealthInsurance", "PublicHealth", "MedicalCoverage"],
+    tags: ["UniversalHealthcares", "AyushmanBharat", "HealthInsurance", "PublicHealth", "MedicalCoverage"],
   },
 ]
