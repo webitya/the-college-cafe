@@ -80,7 +80,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 group"
             >
-              <img src="/webitya.jpg" alt="Webitya Logo" className="w-5 h-5 rounded-full" />
+              <img src="/webitya.jpeg" alt="Webitya Logo" className="w-5 h-5 rounded-full" />
               <span className="text-gray-600">
                 Powered by{" "}
                 <span className="font-semibold bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 bg-clip-text text-transparent group-hover:opacity-80 transition">

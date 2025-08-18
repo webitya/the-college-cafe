@@ -120,7 +120,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
                 className="flex items-center gap-2 text-xs transition"
               >
                 <img
-                  src="/webitya.jpg"
+                  src="/webitya.jpeg"
                   alt="Webitya Logo"
                   className="w-4 h-4 rounded-full"
                 />
