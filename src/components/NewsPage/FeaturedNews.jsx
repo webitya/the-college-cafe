@@ -7,13 +7,8 @@ export default function FeaturedNews() {
   const featuredNews = newsData.slice(0, 3)
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Stories</h2>
-          <p className="text-xl text-gray-600">Top stories and breaking news from the education sector</p>
-        </div>
-
+    <section className="bg-white py-2 px-4 sm:px-4 lg:px-4">
+      <div className="mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {featuredNews.map((news, index) => (
             <Link

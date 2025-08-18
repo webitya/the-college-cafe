@@ -1,5 +1,7 @@
 "use client"
+import { useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import CloseIcon from "@mui/icons-material/Close"
 import SchoolIcon from "@mui/icons-material/School"
 import HomeIcon from "@mui/icons-material/Home"
@@ -8,12 +10,26 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined"
 import WorkIcon from "@mui/icons-material/Work"
 import NewspaperIcon from "@mui/icons-material/Newspaper"
 import ScienceIcon from "@mui/icons-material/Science"
-import GavelIcon from "@mui/icons-material/Gavel" // for UPSC
-import MenuBookIcon from "@mui/icons-material/MenuBook" // for Library
+import GavelIcon from "@mui/icons-material/Gavel"
+import MenuBookIcon from "@mui/icons-material/MenuBook"
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital"
 import DonateButton from "./DonateButton"
 
 export default function NavbarDrawer({ isOpen, onClose }) {
+  const pathname = usePathname()
+
+  // 🔒 Prevent body scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isOpen])
+
   const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
     { name: "About Us", href: "/about", icon: InfoIcon },
@@ -30,58 +46,91 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     <>
       {/* Backdrop */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300" onClick={onClose} />
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300"
+          onClick={onClose}
+        />
       )}
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-72 bg-white/70 backdrop-blur-xl border-l border-white/40 shadow-xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-yellow-50 to-white">
-          <div className="flex items-center space-x-3">
-            <SchoolIcon className="text-yellow-500 text-2xl" />
-            <span className="text-lg font-bold text-gray-800">THE COLLEGE CAFE</span>
+        <div className="flex items-center justify-between p-4 border-b border-white/40 bg-white/50 backdrop-blur-md">
+          <div className="flex items-center space-x-2">
+            <SchoolIcon className="text-yellow-500 text-xl" />
+            <span className="text-base font-semibold text-gray-800">
+              THE COLLEGE CAFE
+            </span>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
+          <button
+            onClick={onClose}
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+          >
             <CloseIcon className="text-gray-600" />
           </button>
         </div>
 
-        {/* Navigation Items */}
-        <nav className="flex flex-col p-4 space-y-2">
-          {navItems.map((item) => {
-            const IconComponent = item.icon
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={onClose}
-                className="flex items-center space-x-2 p-2 rounded-lg text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-200 group"
-              >
-                <IconComponent className="text-xl group-hover:text-yellow-600 transition-colors duration-200" />
-                <span className="font-medium">{item.name}</span>
-              </Link>
-            )
-          })}
-        </nav>
+        {/* Main Content (nav + footer) */}
+        <div className="flex-1 flex flex-col justify-between overflow-y-auto">
+          {/* Navigation */}
+          <nav className="flex flex-col p-4 space-y-1">
+            {navItems.map((item) => {
+              const IconComponent = item.icon
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/")
 
-        {/* Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gray-50">
-          <div className="text-center">
-            <p className="text-sm text-gray-600 mb-4">Your Gateway to Higher Education</p>
-            <div className="mb-4">
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={onClose}
+                  className={`flex items-center space-x-3 p-2 rounded-md transition-all duration-200
+                    ${
+                      isActive
+                        ? "bg-gradient-to-r from-yellow-400 via-orange-300 to-pink-300 text-white shadow-sm"
+                        : "text-gray-700 hover:bg-yellow-50 hover:text-yellow-600"
+                    }`}
+                >
+                  <IconComponent
+                    className={`text-lg transition-colors duration-200 ${
+                      isActive ? "text-white" : "text-gray-500"
+                    }`}
+                  />
+                  <span className="text-sm font-medium">{item.name}</span>
+                </Link>
+              )
+            })}
+          </nav>
+
+          {/* Footer (Always sticks to bottom) */}
+          <div className="p-4 border-t border-white/40 bg-white/60 backdrop-blur-md">
+            <div className="flex flex-col items-center space-y-3">
               <DonateButton
                 variant="drawer"
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                className="w-full bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 hover:from-yellow-500 hover:via-orange-500 hover:to-pink-500 text-white font-medium py-2.5 rounded-lg shadow-sm transition-colors duration-200"
               />
-            </div>
-            <div className="flex justify-center space-x-4">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-              <div className="w-2 h-2 bg-yellow-300 rounded-full"></div>
-              <div className="w-2 h-2 bg-yellow-200 rounded-full"></div>
+              <a
+                href="https://webitya.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs transition"
+              >
+                <img
+                  src="/webitya.jpg"
+                  alt="Webitya Logo"
+                  className="w-4 h-4 rounded-full"
+                />
+                <span className="text-gray-600">
+                  Powered by{" "}
+                  <span className="font-semibold bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">
+                    Webitya
+                  </span>
+                </span>
+              </a>
             </div>
           </div>
         </div>
