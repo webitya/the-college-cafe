@@ -8,6 +8,8 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined"
 import WorkIcon from "@mui/icons-material/Work"
 import NewspaperIcon from "@mui/icons-material/Newspaper"
 import ScienceIcon from "@mui/icons-material/Science"
+import GavelIcon from "@mui/icons-material/Gavel" // for UPSC
+import MenuBookIcon from "@mui/icons-material/MenuBook" // for Library
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital"
 import DonateButton from "./DonateButton"
 
@@ -18,6 +20,8 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "Colleges", href: "/colleges", icon: SchoolOutlinedIcon },
     { name: "JEE", href: "/jee", icon: ScienceIcon },
     { name: "NEET", href: "/neet", icon: LocalHospitalIcon },
+    { name: "UPSC", href: "/upsc", icon: GavelIcon },
+    { name: "Library", href: "/library", icon: MenuBookIcon },
     { name: "Jobs", href: "/jobs", icon: WorkIcon },
     { name: "Latest News", href: "/news", icon: NewspaperIcon },
   ]
@@ -55,7 +59,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
                 key={item.name}
                 href={item.href}
                 onClick={onClose}
-                className="flex items-center space-x-4 p-4 rounded-lg text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-200 group"
+                className="flex items-center space-x-2 p-2 rounded-lg text-gray-700 hover:bg-yellow-50 hover:text-yellow-600 transition-all duration-200 group"
               >
                 <IconComponent className="text-xl group-hover:text-yellow-600 transition-colors duration-200" />
                 <span className="font-medium">{item.name}</span>

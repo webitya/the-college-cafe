@@ -15,7 +15,9 @@ export default function Header() {
     { name: "Colleges", href: "/colleges" },
     { name: "JEE", href: "/jee" },
     { name: "NEET", href: "/neet" },
+    { name: "UPSC", href: "/upsc" },
     { name: "Jobs", href: "/jobs" },
+    { name: "Library", href: "/library" },
     { name: "Latest News", href: "/news" },
   ]
 
@@ -29,7 +31,7 @@ export default function Header() {
               <span className="text-xl font-bold text-gray-800">THE COLLEGE CAFE</span>
             </Link>
 
-            <nav className="hidden md:flex space-x-8 items-center">
+            <nav className="hidden md:flex space-x-3 items-center">
               {navItems.map((item) => (
                 <Link
                   key={item.name}

@@ -421,7 +421,7 @@ export default function LibraryPage() {
             {/* Search Results */}
             {searchTerm && (
               <div className="mb-6 p-4 bg-white border border-gray-200 rounded-lg">
-                <h3 className="font-semibold text-gray-800 mb-1">Search Results for "{searchTerm}"</h3>
+                <h3 className="font-semibold text-gray-800 mb-1">Search Results for {searchTerm}</h3>
                 <p className="text-sm text-gray-600">
                   Found{" "}
                   {Object.keys(filteredMaterials).reduce(
