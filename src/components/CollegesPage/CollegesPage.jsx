@@ -98,41 +98,58 @@ export default function CollegesPage() {
       <Header />
 
       {/* Top Search Bar */}
-      <div className="fixed top-16 left-0 right-0 z-40 bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-200/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
-            <div className="flex-1 relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-yellow-500 transition-colors" />
-              <input
-                type="text"
-                placeholder="Search colleges..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-white/70 focus:ring-4 focus:ring-yellow-500/20 focus:border-yellow-500 outline-none transition-all placeholder:text-gray-400 text-gray-700 shadow-sm"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              )}
-            </div>
-            <button
-              onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden relative flex items-center justify-center w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl hover:from-yellow-600 hover:to-orange-600 shadow-lg"
-            >
-              <Sliders className="w-5 h-5" />
-              {activeFiltersCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-semibold">
-                  {activeFiltersCount}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
+<div className="fixed top-16 left-0 right-0 z-40 overflow-hidden
+  backdrop-blur-2xl shadow-lg border-b border-gray-200/50">
+
+  {/* smoky background blobs */}
+  <div className="absolute inset-0 -z-10">
+    <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-200/40 rounded-full blur-3xl"></div>
+    <div className="absolute top-0 right-1/4 w-72 h-72 bg-yellow-200/40 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-white/40 rounded-full blur-3xl"></div>
+  </div>
+
+  {/* content */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="flex items-center gap-4">
+      <div className="flex-1 relative group">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-yellow-500 transition-colors" />
+        <input
+          type="text"
+          placeholder="Search colleges..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl 
+          bg-white/60 focus:ring-4 focus:ring-yellow-500/20 focus:border-yellow-500 
+          outline-none transition-all placeholder:text-gray-400 text-gray-700 shadow-sm"
+        />
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
+
+    <button
+  onClick={() => setIsMobileFilterOpen(true)}
+  className="lg:hidden relative flex items-center justify-center w-12 h-12 
+  bg-blue-500 text-white rounded-xl hover:bg-blue-500 shadow-md"
+>
+  <Sliders className="w-5 h-5" />
+  {activeFiltersCount > 0 && (
+    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-semibold">
+      {activeFiltersCount}
+    </span>
+  )}
+</button>
+
+    </div>
+  </div>
+</div>
+
+
 
       {/* Main content */}
       <main className="flex-1 pt-20">
@@ -187,7 +204,7 @@ export default function CollegesPage() {
 
             {/* Colleges List */}
             <section className="lg:w-3/4 min-h-[70vh]">
-              <div className="mb-6 p-4 bg-white/70 rounded-xl border border-gray-200 shadow-sm">
+              {/* <div className="mb-6 p-4 bg-white/70 rounded-xl border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-8 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
@@ -201,7 +218,7 @@ export default function CollegesPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <CollegesList colleges={filteredAndSortedColleges} sortBy={sortBy} onSortChange={setSortBy} />
             </section>
           </div>
