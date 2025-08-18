@@ -17,9 +17,9 @@ export default function DonateButton({ variant = "primary", size = "medium", cla
   }
 
   const sizes = {
-    small: "px-4 py-2 text-sm",
-    medium: "px-6 py-3 text-base",
-    large: "px-8 py-4 text-lg",
+    small: "px-3 py-1 text-sm",
+    medium: "px-4 py-2 text-base",
+    large: "px-6 py-3 text-lg",
   }
 
   const handleDonate = () => {
