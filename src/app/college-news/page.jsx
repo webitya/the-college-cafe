@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { collegeNewsData, newsCategories, searchColleges } from "../../data/CollegeNewsData/collegeNewsData"
+import Header from "../../components/shared/Header"
+import Footer from "../../components/shared/Footer"
 import SearchIcon from "@mui/icons-material/Search"
 import SchoolIcon from "@mui/icons-material/School"
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
@@ -17,8 +19,6 @@ import PeopleIcon from "@mui/icons-material/People"
 import BusinessIcon from "@mui/icons-material/Business"
 import TrendingUpIcon from "@mui/icons-material/TrendingUp"
 import NotificationsIcon from "@mui/icons-material/Notifications"
-import Header from "../../components/shared/Header"
-import Footer from "../../components/shared/Footer"
 
 export default function CollegeNewsPage() {
   const [selectedCollege, setSelectedCollege] = useState(null)
@@ -120,9 +120,9 @@ export default function CollegeNewsPage() {
     const filteredNews = getFilteredAndSortedNews(selectedCollege.news)
 
     return (
-    <>
-    <Header/>
-  <div style={{ minHeight: "100vh", backgroundColor: "#fef7e6" }}>
+      <div style={{ minHeight: "100vh", backgroundColor: "#fef7e6" }}>
+        <Header />
+
         {/* Enhanced Header with College Info */}
         <div style={{ backgroundColor: "#f59e0b", padding: "16px 0" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
@@ -375,106 +375,130 @@ export default function CollegeNewsPage() {
             </div>
           )}
         </div>
-      </div>
 
-    <Footer/>
-    </>
+        <Footer />
+      </div>
     )
   }
 
   return (
-     <>
-     <Header/>
-<div style={{ minHeight: "100vh", backgroundColor: "#fef7e6" }}>
-      {/* Enhanced Header */}
-      <div style={{ backgroundColor: "#f59e0b", padding: "24px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px", textAlign: "center" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#fef7e6" }}>
+      <Header />
+
+      <div style={{ backgroundColor: "#f59e0b", padding: "16px 0" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
+          {/* Compact Header */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+            <div
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                padding: "8px",
+                borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <SchoolIcon style={{ fontSize: "24px", color: "white" }} />
+            </div>
+            <div>
+              <h1 style={{ color: "white", fontSize: "24px", fontWeight: "bold", margin: "0", lineHeight: "1.2" }}>
+                College News Hub
+              </h1>
+              <p style={{ color: "white", fontSize: "13px", margin: "0", opacity: "0.9", lineHeight: "1.3" }}>
+                Stay updated with latest exam schedules, holidays, and announcements
+              </p>
+            </div>
+          </div>
+
+          {/* Compact Search Bar */}
+          <div style={{ position: "relative", marginBottom: "12px" }}>
+            <SearchIcon
+              style={{
+                position: "absolute",
+                left: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#9ca3af",
+                fontSize: "18px",
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Search colleges by name, location, type, or abbreviation..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "10px 12px 10px 40px",
+                fontSize: "14px",
+                border: "none",
+                borderRadius: "8px",
+                outline: "none",
+                backgroundColor: "white",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            />
+          </div>
+
+          {/* Compact Filters and Stats Row */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
               gap: "12px",
-              marginBottom: "12px",
             }}
           >
-            <SchoolIcon style={{ fontSize: "36px", color: "white" }} />
-            <h1 style={{ color: "white", fontSize: "32px", fontWeight: "bold", margin: "0" }}>College News Hub</h1>
-          </div>
-          <p style={{ color: "white", fontSize: "16px", margin: "0", opacity: "0.9" }}>
-            Stay updated with latest exam schedules, holidays, and announcements from top colleges
-          </p>
-        </div>
-      </div>
-
-      {/* Enhanced Search and Filters */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "24px 16px" }}>
-        <div style={{ marginBottom: "24px" }}>
-          <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap", marginBottom: "16px" }}>
-            <div style={{ position: "relative", flex: "1", minWidth: "300px" }}>
-              <SearchIcon
-                style={{
-                  position: "absolute",
-                  left: "12px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  color: "#9ca3af",
-                  fontSize: "18px",
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Search colleges by name, location, type, or abbreviation (e.g., 'IIT', 'Ranchi', 'Engineering')..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "12px 12px 12px 40px",
-                  fontSize: "14px",
-                  border: "2px solid #e5e7eb",
-                  borderRadius: "8px",
-                  outline: "none",
-                  transition: "border-color 0.2s",
-                  backgroundColor: "white",
-                }}
-                onFocus={(e) => (e.target.style.borderColor = "#f59e0b")}
-                onBlur={(e) => (e.target.style.borderColor = "#e5e7eb")}
-              />
-            </div>
-
+            {/* Filter */}
             <select
               value={collegeTypeFilter}
               onChange={(e) => setCollegeTypeFilter(e.target.value)}
               style={{
-                padding: "12px 16px",
-                fontSize: "14px",
-                border: "2px solid #e5e7eb",
-                borderRadius: "8px",
+                padding: "8px 12px",
+                fontSize: "13px",
+                border: "none",
+                borderRadius: "6px",
                 backgroundColor: "white",
                 color: "#374151",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
               }}
             >
               <option value="all">All Types</option>
               <option value="government">Government</option>
               <option value="private">Private</option>
             </select>
-          </div>
 
-          <div style={{ display: "flex", gap: "16px", alignItems: "center", fontSize: "14px", color: "#6b7280" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-              <TrendingUpIcon style={{ fontSize: "16px" }} />
-              <span>
-                {filteredColleges.length} of {collegeNewsData.length} colleges
-                {searchTerm && ` matching "${searchTerm}"`}
-              </span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-              <NotificationsIcon style={{ fontSize: "16px" }} />
-              <span>{filteredColleges.reduce((total, college) => total + college.news.length, 0)} total news</span>
+            {/* Compact Stats */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "16px",
+                backgroundColor: "rgba(255, 255, 255, 0.15)",
+                padding: "6px 12px",
+                borderRadius: "6px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <TrendingUpIcon style={{ fontSize: "14px", color: "white", opacity: "0.9" }} />
+                <span style={{ color: "white", fontSize: "12px", fontWeight: "600" }}>
+                  {filteredColleges.length} of {collegeNewsData.length} colleges
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <NotificationsIcon style={{ fontSize: "14px", color: "white", opacity: "0.9" }} />
+                <span style={{ color: "white", fontSize: "12px", fontWeight: "600" }}>
+                  {filteredColleges.reduce((total, college) => total + college.news.length, 0)} total news
+                </span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px 16px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px" }}>
           {filteredColleges.map((college) => (
             <div
@@ -609,9 +633,8 @@ export default function CollegeNewsPage() {
           </div>
         )}
       </div>
-    </div>
 
-     <Footer/>
-     </>
+      <Footer />
+    </div>
   )
 }
