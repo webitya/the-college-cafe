@@ -87,15 +87,16 @@ export default function CollegeNewsPage() {
   }
 
   const shareNews = async (newsItem) => {
-    const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
-    const specificNewsUrl = `${currentUrl}?college=${encodeURIComponent(selectedCollege.shortName)}&news=${encodeURIComponent(newsItem.title)}`
+    const productionUrl = "https://thecollegecafe.in/college-news"
+    const specificNewsUrl = `${productionUrl}?college=${encodeURIComponent(selectedCollege.shortName)}&news=${encodeURIComponent(newsItem.title)}`
 
     const shareContent = `📚 ${newsItem.title}
 
 ${newsItem.description}
 
 🏛️ ${selectedCollege.shortName} | 📍 ${selectedCollege.location}
-🔗 ${specificNewsUrl}
+
+${specificNewsUrl}
 
 #CollegeNews #${selectedCollege.shortName.replace(/\s+/g, "")} #TheCollegeCafe`
 
@@ -119,7 +120,7 @@ ${newsItem.description}
   }
 
   const shareCollege = async (college) => {
-    const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
+    const productionUrl = "https://thecollegecafe.in/college-news"
 
     const shareContent = `🎓 ${college.shortName} - Latest College News
 
@@ -130,7 +131,7 @@ Discover latest news, exam schedules, and announcements from ${college.shortName
 👥 Students: ${college.totalStudents}
 📰 Updates: ${college.news?.length || 0} news items
 
-🔗 ${currentUrl}
+${productionUrl}
 
 #CollegeNews #${college.shortName.replace(/\s+/g, "")} #TheCollegeCafe`
 
@@ -245,7 +246,7 @@ Discover latest news, exam schedules, and announcements from ${college.shortName
                 margin: "0 auto 16px",
               }}
             >
-              We're working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
+              We are working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
               for exciting announcements!
             </p>
             <div
@@ -587,7 +588,13 @@ Discover latest news, exam schedules, and announcements from ${college.shortName
             }}
           >
             {/* Search Bar */}
-            <div style={{ position: "relative", flex: isDesktop ? "1" : "none", width: isDesktop ? "auto" : "100%" }}>
+            <div
+              style={{
+                position: "relative",
+                flex: isDesktop ? "1" : "none",
+                width: isDesktop ? "auto" : "100%",
+              }}
+            >
               <SearchIcon
                 style={{
                   position: "absolute",
