@@ -1,4 +1,5 @@
 import { bitMesraNews } from "./bitMesraNews.js"
+import { marwariCollegeRanchi } from "./marwariCollegeRanchi.js"
 import { nitJamshedpurNews } from "./nitJamshedpurNews.js"
 import { iitDhanbadNews } from "./iitDhanbadNews.js"
 import { ranchiUniversityNews } from "./ranchiUniversityNews.js"
@@ -6,22 +7,39 @@ import { xissNews } from "./xissNews.js"
 import { cujNews } from "./cujNews.js"
 
 const collegeRegistry = {
-  bitMesra: {
-    newsData: bitMesraNews,
+
+  marwariCollegeRanchi: {
+    newsData:marwariCollegeRanchi,
     config: {
-      id: 1,
-      collegeName: "Birla Institute of Technology (BIT Mesra)",
-      shortName: "BIT Mesra",
+      id: 3,
+      collegeName: "Marwari college Ranchi",
+      shortName: "MCR",
       location: "Ranchi, Jharkhand",
-      type: "Private",
-      established: "1955",
-      website: "https://bitmesra.ac.in",
-      image: "/bit-mesra-campus.png",
-      logo: "/bit-mesra-logo.png",
-      totalStudents: "13000+",
-      keywords: ["BIT", "Birla", "Technology", "Mesra", "Engineering", "Private"],
-    },
-  },
+      type: "Government",
+      established: "1926",
+      website: "https://marwaricollegeranchi.ac.in",
+      image: "https://www.espncricinfo.com/photo/marwari-college-team-logo-1319261",
+      logo: "https://www.espncricinfo.com/photo/marwari-college-team-logo-1319261",
+      totalStudents: "5200+",
+      keywords: ["MCR", "Indian", "Arts&Commerce", "RANCHI", , "Government", "Marwari College Ranchi"],
+},
+},
+  // bitMesra: {
+  //   newsData: bitMesraNews,
+  //   config: {
+  //     id: 1,
+  //     collegeName: "Birla Institute of Technology (BIT Mesra)",
+  //     shortName: "BIT Mesra",
+  //     location: "Ranchi, Jharkhand",
+  //     type: "Private",
+  //     established: "1955",
+  //     website: "https://bitmesra.ac.in",
+  //     image: "/bit-mesra-campus.png",
+  //     logo: "/bit-mesra-logo.png",
+  //     totalStudents: "13000+",
+  //     keywords: ["BIT", "Birla", "Technology", "Mesra", "Engineering", "Private"],
+  //   },
+  // },
   // nitJamshedpur: {
   //   newsData: nitJamshedpurNews,
   //   config: {
