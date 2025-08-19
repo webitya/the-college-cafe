@@ -86,20 +86,46 @@ export default function CollegeNewsPage() {
   }
 
   const shareNews = async (newsItem) => {
+    const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
+    const shareTitle = `${newsItem.title} | ${selectedCollege.shortName} - College News Hub`
+    const shareText = `📚 ${newsItem.title}\n\n${newsItem.description}\n\n🔗 Read more college news at: ${currentUrl}\n📖 Original source: ${newsItem.learnMoreLink}`
+    const shareUrl = currentUrl // Use our website as primary share URL
+
     if (navigator.share) {
       try {
         await navigator.share({
-          title: newsItem.title,
-          text: newsItem.description,
-          url: newsItem.learnMoreLink,
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
         })
       } catch (err) {
         console.log("Error sharing:", err)
       }
     } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(`${newsItem.title}\n${newsItem.description}\n${newsItem.learnMoreLink}`)
-      alert("News details copied to clipboard!")
+      const shareContent = `📚 ${shareTitle}\n\n${newsItem.description}\n\n🌐 College News Hub: ${currentUrl}\n📖 Original Link: ${newsItem.learnMoreLink}\n\n#CollegeNews #${selectedCollege.shortName.replace(/\s+/g, "")}`
+      navigator.clipboard.writeText(shareContent)
+      alert("Complete news details with website link copied to clipboard!")
+    }
+  }
+
+  const shareCollege = async (college) => {
+    const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
+    const shareTitle = `${college.collegeName} Latest News - College News Hub`
+    const shareText = `🎓 Stay updated with latest news from ${college.shortName}\n📍 ${college.location} | ${college.type}\n\n📰 Get exam schedules, holidays, and announcements\n🔗 Visit: ${currentUrl}\n\n#CollegeNews #${college.shortName.replace(/\s+/g, "")}`
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: currentUrl,
+        })
+      } catch (err) {
+        console.log("Error sharing:", err)
+      }
+    } else {
+      navigator.clipboard.writeText(`${shareTitle}\n\n${shareText}`)
+      alert("College details with website link copied to clipboard!")
     }
   }
 
@@ -195,7 +221,7 @@ export default function CollegeNewsPage() {
                 margin: "0 auto 16px",
               }}
             >
-              We are working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
+              We're working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
               for exciting announcements!
             </p>
             <div
@@ -397,6 +423,7 @@ export default function CollegeNewsPage() {
                     </button>
                     <button
                       onClick={() => shareNews(newsItem)}
+                      title="Share this news with website link"
                       style={{
                         background: "none",
                         border: "none",
@@ -746,17 +773,39 @@ export default function CollegeNewsPage() {
                 <span style={{ color: "#6b7280", fontSize: "12px" }}>
                   {college.isComingSoon ? "Coming Soon" : `${college.news?.length || 0} updates`}
                 </span>
-                <div
-                  style={{
-                    backgroundColor: college.isComingSoon ? "#9ca3af" : "#f59e0b",
-                    color: "white",
-                    padding: "4px 10px",
-                    borderRadius: "4px",
-                    fontSize: "11px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {college.isComingSoon ? "Preview" : "View News"}
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  {!college.isComingSoon && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        shareCollege(college)
+                      }}
+                      title="Share this college"
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: "4px",
+                        borderRadius: "4px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <ShareIcon style={{ fontSize: "16px", color: "#6b7280" }} />
+                    </button>
+                  )}
+                  <div
+                    style={{
+                      backgroundColor: college.isComingSoon ? "#9ca3af" : "#f59e0b",
+                      color: "white",
+                      padding: "4px 10px",
+                      borderRadius: "4px",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {college.isComingSoon ? "Preview" : "View News"}
+                  </div>
                 </div>
               </div>
             </div>
