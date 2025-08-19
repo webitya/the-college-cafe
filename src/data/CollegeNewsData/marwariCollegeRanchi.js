@@ -1,17 +1,17 @@
 
 
 export const marwariCollegeRanchi = [
-  {
+{
     id: 19,
-    title: "CUJ Semester Exam Schedule December 2024",
+    title: "MCR Semester Exam Schedule August 2025",
     description:
-      "Central University of Jharkhand announces semester examination schedule for December 2024. All students must check the updated timetable on the official portal.",
-    date: "2024-12-12",
+      "marwari college of Jharkhand announces semester examination schedule for August2025. All students must check the updated timetable on the official portal.",
+    date: "2025-08-19",
     category: "Exam",
     priority: "high",
-    learnMoreLink: "https://cuj.ac.in/exam-schedule-dec-2024",
-    buttonText: "Check Schedule",
-  },
+    learnMoreLink: "https://drive.google.com/file/d/1pxwTWAlR_Z7rTNZtaUoCaJXhGT2p8ki6/view?usp=sharing",
+    buttonText: "Download Now",
+},
   {
     id: 20,
     title: "Research Symposium 2025 Call for Papers",
