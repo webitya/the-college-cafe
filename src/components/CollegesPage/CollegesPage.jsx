@@ -204,21 +204,7 @@ export default function CollegesPage() {
 
             {/* Colleges List */}
             <section className="lg:w-3/4 min-h-[70vh]">
-              {/* <div className="mb-6 p-4 bg-white/70 rounded-xl border border-gray-200 shadow-sm">
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-8 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full"></div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        {filteredAndSortedColleges.length} Colleges Found
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        {activeFiltersCount > 0 ? `${activeFiltersCount} filters applied` : "Showing all colleges"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
+      
               <CollegesList colleges={filteredAndSortedColleges} sortBy={sortBy} onSortChange={setSortBy} />
             </section>
           </div>
