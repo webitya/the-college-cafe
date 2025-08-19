@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { collegeNewsData, newsCategories, searchColleges } from "../../data/CollegeNewsData/collegeNewsData"
+import { newsCategories, searchColleges, allColleges } from "../../data/CollegeNewsData/collegeNewsData"
 import Header from "../../components/shared/Header"
 import Footer from "../../components/shared/Footer"
 import SearchIcon from "@mui/icons-material/Search"
@@ -19,6 +19,7 @@ import PeopleIcon from "@mui/icons-material/People"
 import BusinessIcon from "@mui/icons-material/Business"
 import TrendingUpIcon from "@mui/icons-material/TrendingUp"
 import NotificationsIcon from "@mui/icons-material/Notifications"
+import AccessTimeIcon from "@mui/icons-material/AccessTime"
 
 export default function CollegeNewsPage() {
   const [selectedCollege, setSelectedCollege] = useState(null)
@@ -50,7 +51,7 @@ export default function CollegeNewsPage() {
     }
   }, [bookmarkedNews])
 
-  const filteredColleges = searchColleges(collegeNewsData, searchTerm).filter((college) => {
+  const filteredColleges = searchColleges(allColleges, searchTerm).filter((college) => {
     const matchesType = collegeTypeFilter === "all" || college.type.toLowerCase() === collegeTypeFilter.toLowerCase()
     return matchesType
   })
@@ -127,6 +128,96 @@ export default function CollegeNewsPage() {
   }
 
   if (selectedCollege) {
+    if (selectedCollege.isComingSoon) {
+      return (
+        <div style={{ minHeight: "100vh", backgroundColor: "#fef7e6" }}>
+          <Header />
+
+          <div style={{ backgroundColor: "#f59e0b", padding: "16px 0" }}>
+            <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
+                <button
+                  onClick={() => setSelectedCollege(null)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    backgroundColor: "white",
+                    color: "#f59e0b",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "8px 16px",
+                    cursor: "pointer",
+                    fontWeight: "600",
+                  }}
+                >
+                  <ArrowBackIcon style={{ fontSize: "20px" }} />
+                  Back
+                </button>
+                <div style={{ flex: 1 }}>
+                  <h1 style={{ color: "white", fontSize: "24px", fontWeight: "bold", margin: "0" }}>
+                    {selectedCollege.shortName}
+                  </h1>
+                  <div style={{ display: "flex", alignItems: "center", gap: "16px", marginTop: "4px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                      <LocationOnIcon style={{ fontSize: "16px", color: "white", opacity: "0.8" }} />
+                      <span style={{ color: "white", fontSize: "14px", opacity: "0.9" }}>
+                        {selectedCollege.location}
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                      <BusinessIcon style={{ fontSize: "16px", color: "white", opacity: "0.8" }} />
+                      <span style={{ color: "white", fontSize: "14px", opacity: "0.9" }}>{selectedCollege.type}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                      <AccessTimeIcon style={{ fontSize: "16px", color: "white", opacity: "0.8" }} />
+                      <span style={{ color: "white", fontSize: "14px", opacity: "0.9" }}>
+                        Expected {selectedCollege.expectedLaunch}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 16px", textAlign: "center" }}>
+            <AccessTimeIcon style={{ fontSize: "64px", color: "#d1d5db", marginBottom: "16px" }} />
+            <h2 style={{ fontSize: "24px", fontWeight: "bold", color: "#1f2937", marginBottom: "8px" }}>
+              Coming Soon!
+            </h2>
+            <p
+              style={{
+                color: "#6b7280",
+                fontSize: "16px",
+                marginBottom: "16px",
+                maxWidth: "500px",
+                margin: "0 auto 16px",
+              }}
+            >
+              We are working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
+              for exciting announcements!
+            </p>
+            <div
+              style={{
+                backgroundColor: "#fef3c7",
+                padding: "16px",
+                borderRadius: "8px",
+                display: "inline-block",
+                marginTop: "16px",
+              }}
+            >
+              <p style={{ color: "#92400e", fontSize: "14px", margin: "0", fontWeight: "600" }}>
+                Expected Launch: {selectedCollege.expectedLaunch}
+              </p>
+            </div>
+          </div>
+
+          <Footer />
+        </div>
+      )
+    }
+
     const filteredNews = getFilteredAndSortedNews(selectedCollege.news)
 
     return (
@@ -496,13 +587,13 @@ export default function CollegeNewsPage() {
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <TrendingUpIcon style={{ fontSize: "16px", color: "white", opacity: "0.9" }} />
               <span style={{ color: "white", fontSize: "13px", fontWeight: "600" }}>
-                {filteredColleges.length} of {collegeNewsData.length} colleges
+                {filteredColleges.length} of {allColleges.length} colleges
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <NotificationsIcon style={{ fontSize: "16px", color: "white", opacity: "0.9" }} />
               <span style={{ color: "white", fontSize: "13px", fontWeight: "600" }}>
-                {filteredColleges.reduce((total, college) => total + college.news.length, 0)} total news
+                {filteredColleges.reduce((total, college) => total + (college.news?.length || 0), 0)} total news
               </span>
             </div>
           </div>
@@ -519,11 +610,13 @@ export default function CollegeNewsPage() {
                 backgroundColor: "white",
                 borderRadius: "8px",
                 padding: "16px",
-                cursor: "pointer",
+                cursor: college.isComingSoon ? "pointer" : "pointer",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                 border: "1px solid #e5e7eb",
                 transition: "all 0.2s",
                 transform: "translateY(0)",
+                filter: college.isComingSoon ? "grayscale(0.3)" : "none",
+                opacity: college.isComingSoon ? "0.8" : "1",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px)"
@@ -536,7 +629,34 @@ export default function CollegeNewsPage() {
                 e.currentTarget.style.borderColor = "#e5e7eb"
               }}
             >
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "12px" }}>
+              {college.isComingSoon && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "8px",
+                    backgroundColor: "#f59e0b",
+                    color: "white",
+                    padding: "2px 8px",
+                    borderRadius: "12px",
+                    fontSize: "10px",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Coming Soon
+                </div>
+              )}
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "12px",
+                  marginBottom: "12px",
+                  position: "relative",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#fef3c7",
@@ -598,8 +718,17 @@ export default function CollegeNewsPage() {
                       <span style={{ color: "#6b7280", fontSize: "11px" }}>{college.type}</span>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                      <PeopleIcon style={{ fontSize: "12px", color: "#6b7280" }} />
-                      <span style={{ color: "#6b7280", fontSize: "11px" }}>{college.totalStudents}</span>
+                      {college.isComingSoon ? (
+                        <>
+                          <AccessTimeIcon style={{ fontSize: "12px", color: "#6b7280" }} />
+                          <span style={{ color: "#6b7280", fontSize: "11px" }}>{college.expectedLaunch}</span>
+                        </>
+                      ) : (
+                        <>
+                          <PeopleIcon style={{ fontSize: "12px", color: "#6b7280" }} />
+                          <span style={{ color: "#6b7280", fontSize: "11px" }}>{college.totalStudents}</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -614,10 +743,12 @@ export default function CollegeNewsPage() {
                   borderTop: "1px solid #f3f4f6",
                 }}
               >
-                <span style={{ color: "#6b7280", fontSize: "12px" }}>{college.news.length} updates</span>
+                <span style={{ color: "#6b7280", fontSize: "12px" }}>
+                  {college.isComingSoon ? "Coming Soon" : `${college.news?.length || 0} updates`}
+                </span>
                 <div
                   style={{
-                    backgroundColor: "#f59e0b",
+                    backgroundColor: college.isComingSoon ? "#9ca3af" : "#f59e0b",
                     color: "white",
                     padding: "4px 10px",
                     borderRadius: "4px",
@@ -625,7 +756,7 @@ export default function CollegeNewsPage() {
                     fontWeight: "600",
                   }}
                 >
-                  View News
+                  {college.isComingSoon ? "Preview" : "View News"}
                 </div>
               </div>
             </div>

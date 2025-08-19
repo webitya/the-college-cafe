@@ -109,6 +109,71 @@ export const collegeNewsData = Object.values(collegeRegistry).map(({ newsData, c
   news: newsData,
 }))
 
+const comingSoonColleges = [
+  {
+    id: 101,
+    collegeName: "Jharkhand University of Technology (JUT)",
+    shortName: "JUT",
+    location: "Ranchi, Jharkhand",
+    type: "Government",
+    established: "Coming Soon",
+    website: "#",
+    image: "/modern-university-campus.png",
+    logo: "/generic-university-logo.png",
+    totalStudents: "TBA",
+    keywords: ["JUT", "Jharkhand", "University", "Technology", "Engineering"],
+    isComingSoon: true,
+    expectedLaunch: "2024",
+  },
+  {
+    id: 102,
+    collegeName: "Ranchi Institute of Medical Sciences (RIMS)",
+    shortName: "RIMS",
+    location: "Ranchi, Jharkhand",
+    type: "Government",
+    established: "Coming Soon",
+    website: "#",
+    image: "/medical-college.png",
+    logo: "/medical-college-logo.png",
+    totalStudents: "TBA",
+    keywords: ["RIMS", "Ranchi", "Medical", "Sciences", "Healthcare"],
+    isComingSoon: true,
+    expectedLaunch: "2024",
+  },
+  {
+    id: 103,
+    collegeName: "Jharkhand Business School (JBS)",
+    shortName: "JBS",
+    location: "Jamshedpur, Jharkhand",
+    type: "Private",
+    established: "Coming Soon",
+    website: "#",
+    image: "/business-school-campus.png",
+    logo: "/business-school-logo.png",
+    totalStudents: "TBA",
+    keywords: ["JBS", "Jharkhand", "Business", "School", "Management", "MBA"],
+    isComingSoon: true,
+    expectedLaunch: "2025",
+  },
+  {
+    id: 104,
+    collegeName: "Dhanbad College of Engineering (DCE)",
+    shortName: "DCE",
+    location: "Dhanbad, Jharkhand",
+    type: "Government",
+    established: "Coming Soon",
+    website: "#",
+    image: "/engineering-college-campus.png",
+    logo: "/engineering-college-logo.png",
+    totalStudents: "TBA",
+    keywords: ["DCE", "Dhanbad", "College", "Engineering", "Technology"],
+    isComingSoon: true,
+    expectedLaunch: "2025",
+  },
+]
+
+export const allColleges = [...collegeNewsData, ...comingSoonColleges]
+
 export const searchColleges = (colleges, searchTerm) => {
   if (!searchTerm.trim()) return colleges
 
