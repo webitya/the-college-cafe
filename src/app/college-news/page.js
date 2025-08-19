@@ -30,6 +30,7 @@ export default function CollegeNewsPage() {
   const [showFilters, setShowFilters] = useState(false)
   const [collegeTypeFilter, setCollegeTypeFilter] = useState("all")
   const [isDesktop, setIsDesktop] = useState(false)
+  const [copiedStates, setCopiedStates] = useState({})
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -87,46 +88,69 @@ export default function CollegeNewsPage() {
 
   const shareNews = async (newsItem) => {
     const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
-    const shareTitle = `${newsItem.title} | ${selectedCollege.shortName} - College News Hub`
-    const shareText = `📚 ${newsItem.title}\n\n${newsItem.description}\n\n🔗 Read more college news at: ${currentUrl}\n📖 Original source: ${newsItem.learnMoreLink}`
-    const shareUrl = currentUrl // Use our website as primary share URL
+    const specificNewsUrl = `${currentUrl}?college=${encodeURIComponent(selectedCollege.shortName)}&news=${encodeURIComponent(newsItem.title)}`
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: shareTitle,
-          text: shareText,
-          url: shareUrl,
-        })
-      } catch (err) {
-        console.log("Error sharing:", err)
-      }
-    } else {
-      const shareContent = `📚 ${shareTitle}\n\n${newsItem.description}\n\n🌐 College News Hub: ${currentUrl}\n📖 Original Link: ${newsItem.learnMoreLink}\n\n#CollegeNews #${selectedCollege.shortName.replace(/\s+/g, "")}`
-      navigator.clipboard.writeText(shareContent)
-      alert("Complete news details with website link copied to clipboard!")
+    const shareContent = `📚 ${newsItem.title}
+
+${newsItem.description}
+
+🏛️ ${selectedCollege.shortName} | 📍 ${selectedCollege.location}
+🔗 ${specificNewsUrl}
+
+#CollegeNews #${selectedCollege.shortName.replace(/\s+/g, "")} #TheCollegeCafe`
+
+    setCopiedStates((prev) => ({ ...prev, [`news-${newsItem.id}`]: true }))
+
+    try {
+      await navigator.clipboard.writeText(shareContent)
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea")
+      textArea.value = shareContent
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand("copy")
+      document.body.removeChild(textArea)
     }
+
+    setTimeout(() => {
+      setCopiedStates((prev) => ({ ...prev, [`news-${newsItem.id}`]: false }))
+    }, 2000)
   }
 
   const shareCollege = async (college) => {
     const currentUrl = typeof window !== "undefined" ? window.location.origin + "/college-news" : ""
-    const shareTitle = `${college.collegeName} Latest News - College News Hub`
-    const shareText = `🎓 Stay updated with latest news from ${college.shortName}\n📍 ${college.location} | ${college.type}\n\n📰 Get exam schedules, holidays, and announcements\n🔗 Visit: ${currentUrl}\n\n#CollegeNews #${college.shortName.replace(/\s+/g, "")}`
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: shareTitle,
-          text: shareText,
-          url: currentUrl,
-        })
-      } catch (err) {
-        console.log("Error sharing:", err)
-      }
-    } else {
-      navigator.clipboard.writeText(`${shareTitle}\n\n${shareText}`)
-      alert("College details with website link copied to clipboard!")
+    const shareContent = `🎓 ${college.shortName} - Latest College News
+
+Discover latest news, exam schedules, and announcements from ${college.shortName}.
+
+📍 Location: ${college.location}
+🏛️ Type: ${college.type}
+👥 Students: ${college.totalStudents}
+📰 Updates: ${college.news?.length || 0} news items
+
+🔗 ${currentUrl}
+
+#CollegeNews #${college.shortName.replace(/\s+/g, "")} #TheCollegeCafe`
+
+    setCopiedStates((prev) => ({ ...prev, [`college-${college.id}`]: true }))
+
+    try {
+      await navigator.clipboard.writeText(shareContent)
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea")
+      textArea.value = shareContent
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand("copy")
+      document.body.removeChild(textArea)
     }
+
+    setTimeout(() => {
+      setCopiedStates((prev) => ({ ...prev, [`college-${college.id}`]: false }))
+    }, 2000)
   }
 
   // Format date
@@ -221,7 +245,7 @@ export default function CollegeNewsPage() {
                 margin: "0 auto 16px",
               }}
             >
-              We are working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
+              We're working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
               for exciting announcements!
             </p>
             <div
@@ -432,9 +456,24 @@ export default function CollegeNewsPage() {
                         borderRadius: "4px",
                         display: "flex",
                         alignItems: "center",
+                        backgroundColor: copiedStates[`news-${newsItem.id}`] ? "#10b981" : "transparent",
+                        transition: "all 0.2s ease",
                       }}
                     >
-                      <ShareIcon style={{ fontSize: "18px", color: "#6b7280" }} />
+                      {copiedStates[`news-${newsItem.id}`] ? (
+                        <span
+                          style={{
+                            color: "white",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            padding: "2px 6px",
+                          }}
+                        >
+                          Copied
+                        </span>
+                      ) : (
+                        <ShareIcon style={{ fontSize: "18px", color: "#6b7280" }} />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -548,7 +587,7 @@ export default function CollegeNewsPage() {
             }}
           >
             {/* Search Bar */}
-            <div style={{ position: "relative", flex: "1" }}>
+            <div style={{ position: "relative", flex: isDesktop ? "1" : "none", width: isDesktop ? "auto" : "100%" }}>
               <SearchIcon
                 style={{
                   position: "absolute",
@@ -789,9 +828,24 @@ export default function CollegeNewsPage() {
                         borderRadius: "4px",
                         display: "flex",
                         alignItems: "center",
+                        backgroundColor: copiedStates[`college-${college.id}`] ? "#10b981" : "transparent",
+                        transition: "all 0.2s ease",
                       }}
                     >
-                      <ShareIcon style={{ fontSize: "16px", color: "#6b7280" }} />
+                      {copiedStates[`college-${college.id}`] ? (
+                        <span
+                          style={{
+                            color: "white",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            padding: "2px 6px",
+                          }}
+                        >
+                          Copied
+                        </span>
+                      ) : (
+                        <ShareIcon style={{ fontSize: "16px", color: "#6b7280" }} />
+                      )}
                     </button>
                   )}
                   <div
