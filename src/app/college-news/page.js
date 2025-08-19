@@ -221,7 +221,7 @@ export default function CollegeNewsPage() {
                 margin: "0 auto 16px",
               }}
             >
-              We're working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
+              We are working hard to bring you the latest news and updates from {selectedCollege.collegeName}. Stay tuned
               for exciting announcements!
             </p>
             <div
