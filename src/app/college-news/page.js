@@ -28,16 +28,26 @@ export default function CollegeNewsPage() {
   const [bookmarkedNews, setBookmarkedNews] = useState([])
   const [showFilters, setShowFilters] = useState(false)
   const [collegeTypeFilter, setCollegeTypeFilter] = useState("all")
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
-    const savedBookmarks = localStorage.getItem("collegeNewsBookmarks")
-    if (savedBookmarks) {
-      setBookmarkedNews(JSON.parse(savedBookmarks))
+    if (typeof window !== "undefined") {
+      const savedBookmarks = localStorage.getItem("collegeNewsBookmarks")
+      if (savedBookmarks) {
+        setBookmarkedNews(JSON.parse(savedBookmarks))
+      }
+
+      const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768)
+      checkIsDesktop()
+      window.addEventListener("resize", checkIsDesktop)
+      return () => window.removeEventListener("resize", checkIsDesktop)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("collegeNewsBookmarks", JSON.stringify(bookmarkedNews))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("collegeNewsBookmarks", JSON.stringify(bookmarkedNews))
+    }
   }, [bookmarkedNews])
 
   const filteredColleges = searchColleges(collegeNewsData, searchTerm).filter((college) => {
@@ -416,7 +426,7 @@ export default function CollegeNewsPage() {
               display: "flex",
               gap: "12px",
               marginBottom: "12px",
-              flexDirection: window.innerWidth >= 768 ? "row" : "column",
+              flexDirection: isDesktop ? "row" : "column",
             }}
           >
             {/* Search Bar */}
