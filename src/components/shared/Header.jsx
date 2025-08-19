@@ -13,11 +13,13 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Colleges", href: "/colleges" },
-    { name: "JEE", href: "/jee" },
-    { name: "NEET", href: "/neet" },
+    // { name: "JEE", href: "/jee" },
+    // { name: "NEET", href: "/neet" },
     { name: "UPSC", href: "/upsc" },
     { name: "Jobs", href: "/jobs" },
     { name: "Library", href: "/library" },
+    { name: "College News", href: "/college-news" },
+    { name: "Current Affairs", href: "/current-affairs" },
     { name: "Latest News", href: "/news" },
   ]
 

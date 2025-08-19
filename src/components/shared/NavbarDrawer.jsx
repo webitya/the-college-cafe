@@ -13,6 +13,8 @@ import ScienceIcon from "@mui/icons-material/Science"
 import GavelIcon from "@mui/icons-material/Gavel"
 import MenuBookIcon from "@mui/icons-material/MenuBook"
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital"
+import PublicIcon from "@mui/icons-material/Public"   // 🌍 Current Affairs
+import CampaignIcon from "@mui/icons-material/Campaign" // 📢 College News
 import DonateButton from "./DonateButton"
 
 export default function NavbarDrawer({ isOpen, onClose }) {
@@ -39,6 +41,8 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "UPSC", href: "/upsc", icon: GavelIcon },
     { name: "Library", href: "/library", icon: MenuBookIcon },
     { name: "Jobs", href: "/jobs", icon: WorkIcon },
+    { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },   // ✅ Changed
+    { name: "College News", href: "/college-news", icon: CampaignIcon },       // ✅ Changed
     { name: "Latest News", href: "/news", icon: NewspaperIcon },
   ]
 
