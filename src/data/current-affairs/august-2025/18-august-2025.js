@@ -1,0 +1,156 @@
+export const currentAffairs = [
+  {
+    id: "aug-18-1",
+    title: "Assam Govt to Provide Arms License for Border Residents",
+    summary: "Assam govt to issue arms licenses via portal to border residents for self-defense.",
+    content:
+      "The Assam government announced that residents of border areas will be able to apply for arms licenses through a dedicated portal for self-defense purposes. This initiative is aimed at enhancing security and empowering local communities in sensitive border regions.",
+    category: "National Events",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["Assam", "ArmsLicense", "BorderSecurity"],
+  },
+  {
+    id: "aug-18-2",
+    title: "Barda Wildlife Sanctuary Becomes Second Home of Asiatic Lions",
+    summary: "Barda Wildlife Sanctuary in Gujarat emerges as the second home of Asiatic lions.",
+    content:
+      "Barda Wildlife Sanctuary in Gujarat has been recognized as the second natural habitat for Asiatic lions, apart from Gir National Park. This move aims to protect the endangered species and ensure population sustainability.",
+    category: "Environment",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["AsiaticLions", "Wildlife", "Gujarat", "BardaSanctuary"],
+  },
+  {
+    id: "aug-18-3",
+    title: "India’s First Indigenous Medium Machine Gun Developed",
+    summary: "Lokesh Machines in Hyderabad develops India’s first indigenous Medium Machine Gun (MMG).",
+    content:
+      "Hyderabad-based Lokesh Machines has successfully developed India’s first indigenous Medium Machine Gun (MMG). This achievement boosts India’s defense manufacturing capabilities under the Make in India initiative.",
+    category: "Defence",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["MediumMachineGun", "Defence", "IndigenousWeapons", "Hyderabad"],
+  },
+  {
+    id: "aug-18-4",
+    title: "Indian Navy Conducts Military Exercise in Arabian Sea",
+    summary: "Indian Navy warship carried out military exercises in the Arabian Sea (11–12 Aug 2025).",
+    content:
+      "The Indian Navy conducted a military exercise in the Arabian Sea between 11–12 August 2025 using a frontline warship. The drill strengthened naval preparedness and maritime security capabilities.",
+    category: "Defence",
+    importance: "Medium",
+    date: "2025-08-18",
+    tags: ["IndianNavy", "ArabianSea", "MilitaryExercise"],
+  },
+  {
+    id: "aug-18-5",
+    title: "Govt Proposes 40% GST on Sin Goods",
+    summary: "Centre proposes 40% GST slab on tobacco, cigarettes, and other demerit goods.",
+    content:
+      "The government proposed a new 40% GST slab on sin goods such as tobacco and cigarettes. The move aims to discourage consumption of harmful products while boosting revenue from demerit goods.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["GST", "Taxation", "SinGoods"],
+  },
+  {
+    id: "aug-18-6",
+    title: "NHAI Implements FASTag Annual Pass",
+    summary: "From 15 August 2025, NHAI implemented FASTag Annual Pass on highways and expressways.",
+    content:
+      "The National Highways Authority of India (NHAI) rolled out the FASTag Annual Pass from 15 August 2025, allowing seamless toll payments across highways and expressways. The pass is expected to reduce congestion and boost digital payments.",
+    category: "Transport & Infrastructure",
+    importance: "Medium",
+    date: "2025-08-18",
+    tags: ["FASTag", "NHAI", "Highways", "DigitalIndia"],
+  },
+  {
+    id: "aug-18-7",
+    title: "Indian Tricolor Hoisted at Seattle’s Space Needle",
+    summary: "For the first time, the Indian tricolor was hoisted at the 605 ft Space Needle in Seattle, USA.",
+    content:
+      "On the occasion of Independence Day, the Indian national flag was hoisted for the first time at Seattle’s iconic Space Needle (605 ft). The event was a moment of pride for the Indian diaspora in the United States.",
+    category: "Diaspora",
+    importance: "Medium",
+    date: "2025-08-18",
+    tags: ["IndianDiaspora", "Seattle", "IndependenceDay", "Tricolor"],
+  },
+  {
+    id: "aug-18-8",
+    title: "Waterways to Wonder Cruise Tourism Conference in Mumbai",
+    summary: "Mumbai hosted the ‘Waterways to Wonder: Unlocking Cruise Tourism’ conference.",
+    content:
+      "The ‘Waterways to Wonder’ cruise tourism conference was held in Mumbai to promote India’s cruise tourism industry. The event focused on opportunities, challenges, and policies to boost the sector.",
+    category: "Tourism",
+    importance: "Medium",
+    date: "2025-08-18",
+    tags: ["CruiseTourism", "Mumbai", "Conference"],
+  },
+  {
+    id: "aug-18-9",
+    title: "FASTag Achieves 98%+ User Adoption",
+    summary: "FASTag revolutionized India’s toll system with more than 98% adoption rate.",
+    content:
+      "FASTag has transformed toll collection in India with a record 98%+ adoption among highway users. The digital system has significantly reduced waiting times, improved efficiency, and promoted cashless transactions.",
+    category: "Transport & Infrastructure",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["FASTag", "DigitalPayments", "Transport", "TollSystem"],
+  },
+  {
+    id: "aug-18-10",
+    title: "S&P Global Upgrades India’s Rating to BBB+",
+    summary: "S&P Global raised India’s credit rating from ‘BBB-’ to BBB+.",
+    content:
+      "S&P Global Ratings upgraded India’s sovereign rating from ‘BBB-’ to BBB+. The upgrade reflects confidence in India’s economic growth, fiscal management, and policy stability.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["SPGlobal", "CreditRating", "Economy"],
+  },
+  {
+    id: "aug-18-11",
+    title: "25 Crore Soil Health Cards Distributed",
+    summary: "So far, 25 crore Soil Health Cards have been distributed under the scheme.",
+    content:
+      "Under the government’s ‘Swasth Dhara, Khet Hara’ initiative, 25 crore Soil Health Cards have been distributed to farmers. The scheme aims to promote balanced fertilizer use and improve soil fertility.",
+    category: "Agriculture",
+    importance: "Medium",
+    date: "2025-08-18",
+    tags: ["SoilHealthCard", "Agriculture", "Farmers"],
+  },
+  {
+    id: "aug-18-12",
+    title: "Global Findex 2025: India’s Account Ownership at 89%",
+    summary: "India’s account ownership reached 89% as per Global Findex 2025 report.",
+    content:
+      "The World Bank’s Global Findex Report 2025 revealed that 89% of India’s adult population owns a bank account. This reflects significant progress in financial inclusion over the past decade.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["GlobalFindex", "FinancialInclusion", "Banking"],
+  },
+  {
+    id: "aug-18-13",
+    title: "UPI Records 1,946 Crore Transactions in July 2025",
+    summary: "UPI achieved a record 1,946 crore transactions in a single month (July 2025).",
+    content:
+      "India’s Unified Payments Interface (UPI) set a new benchmark by crossing 1,946 crore transactions in July 2025. This record highlights India’s leadership in digital payments globally.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["UPI", "DigitalPayments", "July2025", "Fintech"],
+  },
+  {
+    id: "aug-18-14",
+    title: "QS World Ranking 2026: Rise of Indian Universities",
+    summary: "Number of Indian universities in QS World Ranking 2026 increased fivefold.",
+    content:
+      "The QS World Ranking 2026 featured five times more Indian universities compared to previous years. This reflects India’s growing global presence in higher education and academic excellence.",
+    category: "Education",
+    importance: "High",
+    date: "2025-08-18",
+    tags: ["QSWorldRanking", "HigherEducation", "Universities", "India"],
+  },
+]

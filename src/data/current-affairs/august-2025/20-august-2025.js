@@ -1,0 +1,167 @@
+export const currentAffairs = [
+  {
+    id: "aug-20-1",
+    title: "Ajay Kumar Bhalla Given Additional Charge of Nagaland",
+    summary: "Governor of Manipur Ajay Kumar Bhalla takes additional charge as Governor of Nagaland.",
+    content:
+      "Ajay Kumar Bhalla, the Governor of Manipur, has been assigned the additional responsibility of serving as the Governor of Nagaland. This decision strengthens administrative continuity in the region.",
+    category: "National Events",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["Governors", "Nagaland", "Manipur", "AjayKumarBhalla"],
+  },
+  {
+    id: "aug-20-2",
+    title: "NDA VP Candidate Radhakrishnan is Governor of Maharashtra",
+    summary: "NDA's Vice-Presidential candidate Radhakrishnan currently serves as Maharashtra’s Governor.",
+    content:
+      "NDA announced that its Vice-Presidential candidate, Radhakrishnan, is the current Governor of Maharashtra. His candidature reflects the alliance’s focus on experienced leadership.",
+    category: "Politics",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["VicePresident", "NDA", "MaharashtraGovernor"],
+  },
+  {
+    id: "aug-20-3",
+    title: "India to Host Asian Open Short Track Speed Skating Trophy",
+    summary: "India will host the Asian Open Short Track Speed Skating Trophy 2025 in Dehradun.",
+    content:
+      "For the first time, India will host the Asian Open Short Track Speed Skating Trophy in 2025. The event will take place in Dehradun, marking a milestone for winter sports in the country.",
+    category: "Sports",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["SpeedSkating", "Dehradun", "AsianOpen", "SportsEvent"],
+  },
+  {
+    id: "aug-20-4",
+    title: "Russia to Launch Venera-D Mission to Venus Before 2036",
+    summary: "Russia announces plans to send Venera-D Mission to Venus before 2036.",
+    content:
+      "Russia has confirmed that it will launch the Venera-D mission to Venus before 2036. The mission will focus on planetary research and exploration of Venus’ hostile atmosphere.",
+    category: "Science & Technology",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["Russia", "VeneraD", "SpaceMission", "Venus"],
+  },
+  {
+    id: "aug-20-5",
+    title: "India’s Electronics Exports Grew 47% in Q1 2025–26",
+    summary: "India’s electronics exports recorded a 47% growth in the first quarter of FY 2025–26.",
+    content:
+      "India’s electronics exports witnessed a 47% year-on-year growth in Q1 of FY 2025–26, reflecting strong demand in global markets and government initiatives promoting the sector.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["ElectronicsExports", "Economy", "Trade", "MakeInIndia"],
+  },
+  {
+    id: "aug-20-6",
+    title: "India’s First Women-Run Street Food Hub Launched in Gurgaon",
+    summary: "Piyush Goyal inaugurates India’s first women-run clean street food hub ‘Mouli’ in Gurgaon.",
+    content:
+      "Union Minister Piyush Goyal inaugurated ‘Mouli’, India’s first women-run clean street food hub in Gurgaon. The initiative aims to empower women entrepreneurs while promoting hygienic street food culture.",
+    category: "National Events",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["PiyushGoyal", "WomenEmpowerment", "StreetFood", "Gurgaon"],
+  },
+  {
+    id: "aug-20-7",
+    title: "World Human Robot Games Held in Beijing",
+    summary: "Over 500 human robots from 16 countries competed in Beijing’s World Human Robot Games.",
+    content:
+      "The World Human Robot Games 2025, held in Beijing, witnessed participation of more than 500 human robots from 16 countries. The event showcased advancements in humanoid robotics and AI-driven performance.",
+    category: "Science & Technology",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["Robotics", "AI", "Beijing", "TechnologyEvent"],
+  },
+  {
+    id: "aug-20-8",
+    title: "India’s Exports Rose 7.3% in July 2025",
+    summary: "Exports reached $37 billion in July 2025, marking 7.3% growth year-on-year.",
+    content:
+      "India’s merchandise exports grew by 7.3% in July 2025, reaching around $37 billion. This rise highlights resilience in trade despite global economic uncertainties.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["Exports", "Trade", "Economy", "July2025"],
+  },
+  {
+    id: "aug-20-9",
+    title: "India Ranked 130th in Human Development Report 2025",
+    summary: "India placed 130th among 193 nations in the UN Human Development Report 2025.",
+    content:
+      "The United Nations Human Development Report 2025 ranked India at 130th out of 193 countries. The ranking reflects progress in some areas while pointing to challenges in health, education, and income distribution.",
+    category: "Reports & Rankings",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["HumanDevelopment", "UNDP", "IndiaRanking", "HDI"],
+  },
+  {
+    id: "aug-20-10",
+    title: "Maharashtra Tops in UPI Users: NPCI Data",
+    summary: "Maharashtra leads the country in UPI adoption and active users, per NPCI report.",
+    content:
+      "According to NPCI data, Maharashtra tops the list of Indian states in UPI users, showcasing digital payment adoption at scale. UPI continues to dominate India’s fintech landscape.",
+    category: "Economy & Finance",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["UPI", "DigitalPayments", "Maharashtra", "NPCI"],
+  },
+  {
+    id: "aug-20-11",
+    title: "Akshay Urja Diwas Observed on 20 August",
+    summary: "India observed Akshay Urja Diwas 2025 to promote renewable energy awareness.",
+    content:
+      "Akshay Urja Diwas, celebrated every year on 20 August, was observed across India to spread awareness about renewable energy and sustainable practices.",
+    category: "Environment",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["AkshayUrjaDiwas", "RenewableEnergy", "Sustainability"],
+  },
+  {
+    id: "aug-20-12",
+    title: "5 Lakh Students Joined Youth Parliament Program",
+    summary: "Nearly 5 lakh students participated in India’s Youth Parliament Program 2025.",
+    content:
+      "The Youth Parliament Program 2025 saw participation from about 5 lakh students across the country. The initiative encourages democratic values, debate culture, and youth involvement in governance.",
+    category: "Education",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["YouthParliament", "Education", "StudentParticipation"],
+  },
+  {
+    id: "aug-20-13",
+    title: "RBI Committee on Responsible AI in Finance",
+    summary: "RBI panel suggests 26 recommendations for responsible AI adoption in the financial sector.",
+    content:
+      "An RBI-appointed committee has submitted 26 key recommendations to promote responsible and ethical AI adoption in India’s financial system. The report highlights transparency, accountability, and customer protection as priorities.",
+    category: "Economy & Finance",
+    importance: "High",
+    date: "2025-08-20",
+    tags: ["RBI", "AI", "Finance", "Recommendations"],
+  },
+  {
+    id: "aug-20-14",
+    title: "Waterways to Wonder Cruise Conference Held in Mumbai",
+    summary: "‘Waterways to Wonder’ cruise tourism conference held on 18 August 2025 in Mumbai.",
+    content:
+      "Mumbai hosted the ‘Waterways to Wonder’ cruise tourism conference on 18 August 2025. The event focused on boosting India’s cruise tourism industry through infrastructure and policy support.",
+    category: "Tourism",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["CruiseTourism", "Mumbai", "Conference"],
+  },
+  {
+    id: "aug-20-15",
+    title: "Over 5 Lakh FASTag Annual Passes Issued Within 4 Days",
+    summary: "NHAI issued over 5 lakh FASTag annual passes within 4 days of launch.",
+    content:
+      "The National Highways Authority of India (NHAI) reported issuing more than 5 lakh FASTag annual passes within just 4 days of its launch, indicating strong adoption of digital toll payment solutions.",
+    category: "Transport & Infrastructure",
+    importance: "Medium",
+    date: "2025-08-20",
+    tags: ["FASTag", "NHAI", "Transport", "DigitalIndia"],
+  },
+]
