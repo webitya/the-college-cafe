@@ -25,8 +25,8 @@ const AVAILABLE_DATES = {
   "17-august-2025": { month: "august-2025", file: "17-august-2025" },
   "18-august-2025": { month: "august-2025", file: "18-august-2025" },
   "19-august-2025": { month: "august-2025", file: "19-august-2025" },
-  
   "20-august-2025": { month: "august-2025", file: "20-august-2025" },
+  "21-august-2025": { month: "august-2025", file: "21-august-2025" },
 }
 
 export const getAvailableDates = () => {
