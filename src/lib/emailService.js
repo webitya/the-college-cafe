@@ -239,6 +239,10 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
     console.log("[v0] User details:", { name: userDetails.name, email: userDetails.email })
     console.log("[v0] Quiz results:", quizResults)
 
+    if (!certificatePDF || !resultsPDF) {
+      throw new Error("Invalid PDF objects provided")
+    }
+
     const transporter = createTransporter()
 
     console.log("[v0] Testing email connection...")
@@ -251,6 +255,24 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
 
     console.log("[v0] Email templates generated")
 
+    let certificateBuffer, resultsBuffer
+
+    try {
+      certificateBuffer = certificatePDF.output("arraybuffer")
+      console.log("[v0] Certificate PDF buffer generated, size:", certificateBuffer.byteLength)
+    } catch (bufferError) {
+      console.error("[v0] Certificate PDF buffer generation failed:", bufferError)
+      throw new Error("Failed to generate certificate PDF buffer: " + bufferError.message)
+    }
+
+    try {
+      resultsBuffer = resultsPDF.output("arraybuffer")
+      console.log("[v0] Results PDF buffer generated, size:", resultsBuffer.byteLength)
+    } catch (bufferError) {
+      console.error("[v0] Results PDF buffer generation failed:", bufferError)
+      throw new Error("Failed to generate results PDF buffer: " + bufferError.message)
+    }
+
     // Send email to user
     const userMailOptions = {
       from: process.env.EMAIL_USER,
@@ -259,13 +281,13 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       html: userEmail.html,
       attachments: [
         {
-          filename: `${userDetails.name}_Certificate_Week${quizResults.week}.pdf`,
-          content: certificatePDF.output("arraybuffer"),
+          filename: `${userDetails.name.replace(/[^a-zA-Z0-9]/g, "_")}_Certificate_Week${quizResults.week}.pdf`,
+          content: Buffer.from(certificateBuffer),
           contentType: "application/pdf",
         },
         {
-          filename: `${userDetails.name}_Results_Week${quizResults.week}.pdf`,
-          content: resultsPDF.output("arraybuffer"),
+          filename: `${userDetails.name.replace(/[^a-zA-Z0-9]/g, "_")}_Results_Week${quizResults.week}.pdf`,
+          content: Buffer.from(resultsBuffer),
           contentType: "application/pdf",
         },
       ],
@@ -280,6 +302,10 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
     }
 
     console.log("[v0] Sending emails...")
+    console.log(
+      "[v0] User email attachments:",
+      userMailOptions.attachments.map((a) => ({ filename: a.filename, size: a.content.length })),
+    )
 
     // Send both emails
     const [userResult, adminResult] = await Promise.all([
@@ -303,6 +329,7 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       code: error.code,
       command: error.command,
       response: error.response,
+      stack: error.stack,
     })
     throw new Error("Failed to send emails: " + error.message)
   }

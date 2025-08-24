@@ -106,30 +106,20 @@ export const generateCertificate = (userDetails, quizResults) => {
   doc.text(`Issued on: ${currentDate}`, 40, 185)
   doc.text("New Delhi, India", 40, 195)
 
-  doc.setFontSize(24)
-  doc.setFont("helvetica", "bold")
+  doc.setFontSize(20)
+  doc.setFont("times", "italic") // More signature-like font
   doc.setTextColor(0, 0, 0)
-  // Signature style text (mimicking handwritten signature)
-  doc.text("Aditya Kumar", 200, 185, { align: "center" })
+  doc.text("Aditya Kumar", 220, 180, { align: "center" })
 
   // Signature line
   doc.setLineWidth(1)
   doc.setDrawColor(0, 0, 0)
-  doc.line(170, 190, 230, 190)
+  doc.line(190, 185, 250, 185)
 
   doc.setFontSize(10)
   doc.setFont("helvetica", "normal")
-  doc.text("Aditya Kumar", 200, 197, { align: "center" })
-  doc.text("Chief Executive Officer", 200, 205, { align: "center" })
-  doc.text("The College Cafe", 200, 213, { align: "center" })
-
-  doc.setDrawColor(255, 193, 7)
-  doc.setLineWidth(2)
-  doc.circle(60, 185, 15)
-  doc.setFontSize(8)
-  doc.setFont("helvetica", "bold")
-  doc.text("OFFICIAL", 60, 182, { align: "center" })
-  doc.text("SEAL", 60, 188, { align: "center" })
+  doc.text("Aditya Kumar", 220, 192, { align: "center" })
+  doc.text("Chief Executive Officer", 220, 199, { align: "center" })
 
   return doc
 }
