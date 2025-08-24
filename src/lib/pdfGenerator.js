@@ -7,75 +7,129 @@ export const generateCertificate = (userDetails, quizResults) => {
     format: "a4",
   })
 
-  // Certificate background
-  doc.setFillColor(255, 248, 220) // Light yellow background
+  doc.setFillColor(255, 255, 255) // Pure white background
   doc.rect(0, 0, 297, 210, "F")
 
-  // Border
-  doc.setDrawColor(255, 193, 7) // Yellow border
-  doc.setLineWidth(3)
-  doc.rect(10, 10, 277, 190)
+  // Elegant outer border
+  doc.setDrawColor(255, 193, 7) // Golden yellow border
+  doc.setLineWidth(4)
+  doc.rect(8, 8, 281, 194)
 
-  // Inner border
-  doc.setDrawColor(255, 193, 7)
+  // Inner decorative border
+  doc.setDrawColor(0, 123, 191) // Light blue accent
   doc.setLineWidth(1)
-  doc.rect(15, 15, 267, 180)
+  doc.rect(18, 18, 261, 174)
 
-  // Header
-  doc.setFontSize(28)
+  doc.setFontSize(32)
   doc.setTextColor(0, 0, 0)
   doc.setFont("helvetica", "bold")
-  doc.text("THE COLLEGE CAFE", 148.5, 40, { align: "center" })
+  doc.text("THE COLLEGE CAFE", 148.5, 35, { align: "center" })
 
-  doc.setFontSize(18)
+  doc.setFontSize(12)
   doc.setFont("helvetica", "normal")
-  doc.text("Certificate of Achievement", 148.5, 55, { align: "center" })
-
-  // Decorative line
-  doc.setDrawColor(255, 193, 7)
-  doc.setLineWidth(2)
-  doc.line(80, 65, 217, 65)
-
-  // Main content
-  doc.setFontSize(16)
-  doc.setFont("helvetica", "normal")
-  doc.text("This is to certify that", 148.5, 85, { align: "center" })
+  doc.setTextColor(100, 100, 100)
+  doc.text("Educational Excellence & Professional Development", 148.5, 45, { align: "center" })
 
   doc.setFontSize(24)
   doc.setFont("helvetica", "bold")
   doc.setTextColor(255, 193, 7)
-  doc.text(userDetails.name, 148.5, 105, { align: "center" })
+  doc.text("CERTIFICATE OF ACHIEVEMENT", 148.5, 65, { align: "center" })
 
-  doc.setFontSize(16)
-  doc.setTextColor(0, 0, 0)
-  doc.setFont("helvetica", "normal")
-  doc.text("has successfully completed", 148.5, 125, { align: "center" })
+  // Decorative flourish lines
+  doc.setDrawColor(255, 193, 7)
+  doc.setLineWidth(2)
+  doc.line(60, 72, 120, 72)
+  doc.line(177, 72, 237, 72)
 
-  doc.setFontSize(18)
-  doc.setFont("helvetica", "bold")
-  doc.text(`${quizResults.quiz} - Week ${quizResults.week}`, 148.5, 140, { align: "center" })
+  // Small decorative circles
+  doc.circle(125, 72, 2, "F")
+  doc.circle(172, 72, 2, "F")
 
   doc.setFontSize(14)
   doc.setFont("helvetica", "normal")
+  doc.setTextColor(0, 0, 0)
+  doc.text("This is to certify that", 148.5, 90, { align: "center" })
+
+  doc.setFontSize(28)
+  doc.setFont("helvetica", "bold")
+  doc.setTextColor(0, 123, 191)
+  doc.text(userDetails.name.toUpperCase(), 148.5, 108, { align: "center" })
+
+  doc.setFontSize(14)
+  doc.setTextColor(0, 0, 0)
+  doc.setFont("helvetica", "normal")
+  doc.text("has successfully demonstrated exceptional knowledge and skill by completing", 148.5, 125, {
+    align: "center",
+  })
+
+  doc.setFontSize(18)
+  doc.setFont("helvetica", "bold")
+  doc.setTextColor(255, 193, 7)
+  doc.text(`Weekly Knowledge Assessment - Week ${quizResults.week}`, 148.5, 140, { align: "center" })
+
+  doc.setFontSize(14)
+  doc.setFont("helvetica", "normal")
+  doc.setTextColor(0, 0, 0)
   doc.text(
-    `with a score of ${quizResults.score}/${quizResults.totalQuestions} (${quizResults.percentage}%)`,
+    `achieving an outstanding score of ${quizResults.score} out of ${quizResults.totalQuestions} questions (${quizResults.percentage}%)`,
     148.5,
     155,
     { align: "center" },
   )
 
-  // Date
+  let achievementLevel = ""
+  if (quizResults.percentage >= 90) {
+    achievementLevel = "with DISTINCTION"
+  } else if (quizResults.percentage >= 80) {
+    achievementLevel = "with EXCELLENCE"
+  } else if (quizResults.percentage >= 70) {
+    achievementLevel = "with MERIT"
+  } else if (quizResults.percentage >= 60) {
+    achievementLevel = "with PROFICIENCY"
+  }
+
+  if (achievementLevel) {
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "bold")
+    doc.setTextColor(255, 193, 7)
+    doc.text(achievementLevel, 148.5, 167, { align: "center" })
+  }
+
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   })
-  doc.setFontSize(12)
-  doc.text(`Date: ${currentDate}`, 50, 180)
+  doc.setFontSize(11)
+  doc.setFont("helvetica", "normal")
+  doc.setTextColor(0, 0, 0)
+  doc.text(`Issued on: ${currentDate}`, 40, 185)
+  doc.text("New Delhi, India", 40, 195)
+
+  doc.setFontSize(24)
+  doc.setFont("helvetica", "bold")
+  doc.setTextColor(0, 0, 0)
+  // Signature style text (mimicking handwritten signature)
+  doc.text("Aditya Kumar", 200, 185, { align: "center" })
 
   // Signature line
-  doc.text("The College Cafe Team", 200, 180)
-  doc.line(180, 175, 250, 175)
+  doc.setLineWidth(1)
+  doc.setDrawColor(0, 0, 0)
+  doc.line(170, 190, 230, 190)
+
+  doc.setFontSize(10)
+  doc.setFont("helvetica", "normal")
+  doc.text("Aditya Kumar", 200, 197, { align: "center" })
+  doc.text("Chief Executive Officer", 200, 205, { align: "center" })
+  doc.text("The College Cafe", 200, 213, { align: "center" })
+
+  doc.setDrawColor(255, 193, 7)
+  doc.setLineWidth(2)
+  doc.circle(60, 185, 15)
+  doc.setFontSize(8)
+  doc.setFont("helvetica", "bold")
+  doc.text("OFFICIAL", 60, 182, { align: "center" })
+  doc.text("SEAL", 60, 188, { align: "center" })
 
   return doc
 }

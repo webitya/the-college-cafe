@@ -2,11 +2,24 @@ import nodemailer from "nodemailer"
 
 // Create transporter using environment variables
 const createTransporter = () => {
-  return nodemailer.createTransporter({
-    service: "gmail", // You can change this to your email service
+  console.log("[v0] Creating email transporter...")
+
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error("[v0] Missing email credentials - EMAIL_USER or EMAIL_PASS not set")
+    throw new Error("Email credentials not configured")
+  }
+
+  return nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use TLS
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_PASS, // Should be App Password for Gmail
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   })
 }
@@ -222,11 +235,21 @@ const getPerformanceMessage = (percentage) => {
 // Main email sending function
 export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, resultsPDF) => {
   try {
+    console.log("[v0] Starting email sending process...")
+    console.log("[v0] User details:", { name: userDetails.name, email: userDetails.email })
+    console.log("[v0] Quiz results:", quizResults)
+
     const transporter = createTransporter()
+
+    console.log("[v0] Testing email connection...")
+    await transporter.verify()
+    console.log("[v0] Email connection verified successfully")
 
     // Generate email templates
     const userEmail = generateUserEmailTemplate(userDetails, quizResults)
     const adminEmail = generateAdminEmailTemplate(userDetails, quizResults)
+
+    console.log("[v0] Email templates generated")
 
     // Send email to user
     const userMailOptions = {
@@ -256,11 +279,17 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       html: adminEmail.html,
     }
 
+    console.log("[v0] Sending emails...")
+
     // Send both emails
     const [userResult, adminResult] = await Promise.all([
       transporter.sendMail(userMailOptions),
       transporter.sendMail(adminMailOptions),
     ])
+
+    console.log("[v0] Emails sent successfully")
+    console.log("[v0] User email ID:", userResult.messageId)
+    console.log("[v0] Admin email ID:", adminResult.messageId)
 
     return {
       success: true,
@@ -268,7 +297,13 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       adminEmailId: adminResult.messageId,
     }
   } catch (error) {
-    console.error("Email sending error:", error)
+    console.error("[v0] Email sending error:", error)
+    console.error("[v0] Error details:", {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      response: error.response,
+    })
     throw new Error("Failed to send emails: " + error.message)
   }
 }

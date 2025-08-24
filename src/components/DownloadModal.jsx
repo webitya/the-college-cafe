@@ -85,6 +85,10 @@ export default function DownloadModal({ isOpen, onClose, quizResults, quizData }
 
   const sendEmailNotification = async (type) => {
     try {
+      console.log("[v0] Sending email notification for:", type)
+      console.log("[v0] User details:", userDetails)
+      console.log("[v0] Quiz results:", quizResults)
+
       const response = await fetch("/api/sendquiz-email", {
         method: "POST",
         headers: {
@@ -98,16 +102,17 @@ export default function DownloadModal({ isOpen, onClose, quizResults, quizData }
       })
 
       const result = await response.json()
+      console.log("[v0] API response:", result)
 
       if (response.ok) {
         setEmailSent(true)
-        console.log(`${type} email sent successfully:`, result)
+        console.log("[v0] Email sent successfully:", result)
       } else {
-        console.error("Email sending failed:", result)
-        alert(`Warning: ${type} downloaded but email sending failed. Please contact support.`)
+        console.error("[v0] Email sending failed:", result)
+        alert(`Warning: ${type} downloaded but email sending failed: ${result.error || "Unknown error"}`)
       }
     } catch (error) {
-      console.error("Email API error:", error)
+      console.error("[v0] Email API error:", error)
       alert(`Warning: ${type} downloaded but email sending failed. Please contact support.`)
     }
   }
