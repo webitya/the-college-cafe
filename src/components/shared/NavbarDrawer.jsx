@@ -36,9 +36,9 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "Home", href: "/", icon: HomeIcon },
     { name: "About Us", href: "/about", icon: InfoIcon },
     { name: "Colleges", href: "/colleges", icon: SchoolOutlinedIcon },
-    { name: "JEE", href: "/jee", icon: ScienceIcon },
-    { name: "NEET", href: "/neet", icon: LocalHospitalIcon },
-    { name: "UPSC", href: "/upsc", icon: GavelIcon },
+    // { name: "JEE", href: "/jee", icon: ScienceIcon },
+    // { name: "NEET", href: "/neet", icon: LocalHospitalIcon },
+    { name: "Weekly QUIZ", href: "/quiz", icon: GavelIcon },
     { name: "Library", href: "/library", icon: MenuBookIcon },
     { name: "Jobs", href: "/jobs", icon: WorkIcon },
     { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },   // ✅ Changed

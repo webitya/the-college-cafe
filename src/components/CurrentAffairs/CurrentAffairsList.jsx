@@ -9,10 +9,27 @@ const CurrentAffairsList = ({ selectedDate, onDateSelect }) => {
   const [loading, setLoading] = useState(false)
   const [availableDates] = useState(getAllAvailableDatesFlat())
 
+  // 👉 Auto-select today's date or latest available date
+  useEffect(() => {
+    if (!selectedDate && availableDates.length > 0) {
+      const today = new Date()
+      const day = today.getDate().toString().padStart(2, "0")
+      const month = today.toLocaleString("en-US", { month: "long" }).toLowerCase() // e.g. "august"
+      const year = today.getFullYear()
+      const todayStr = `${day}-${month}-${year}`
+
+      if (availableDates.includes(todayStr)) {
+        onDateSelect(todayStr) // pick today if available
+      } else {
+        onDateSelect(availableDates[availableDates.length - 1]) // fallback: latest date
+      }
+    }
+  }, [selectedDate, availableDates, onDateSelect])
+
+  // 👉 Load data when selectedDate changes
   useEffect(() => {
     const loadData = async () => {
       if (!selectedDate) return
-
       setLoading(true)
       try {
         const data = await loadCurrentAffairsData(selectedDate)
@@ -24,7 +41,6 @@ const CurrentAffairsList = ({ selectedDate, onDateSelect }) => {
         setLoading(false)
       }
     }
-
     loadData()
   }, [selectedDate])
 
@@ -91,7 +107,6 @@ const CurrentAffairsList = ({ selectedDate, onDateSelect }) => {
           onChange={(e) => onDateSelect(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
         >
-          <option value="">Select a date</option>
           {availableDates.map((date) => (
             <option key={date} value={date}>
               {formatDate(date)}
