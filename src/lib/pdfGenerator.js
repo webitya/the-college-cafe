@@ -104,7 +104,7 @@ export const generateCertificate = (userDetails, quizResults) => {
   doc.setFont("helvetica", "normal")
   doc.setTextColor(0, 0, 0)
   doc.text(`Issued on: ${currentDate}`, 40, 185)
-  doc.text("New Delhi, India", 40, 195)
+  doc.text("Ranchi, Jharkhand, India", 40, 195)
 
   doc.setFontSize(20)
   doc.setFont("times", "italic") // More signature-like font
@@ -118,8 +118,7 @@ export const generateCertificate = (userDetails, quizResults) => {
 
   doc.setFontSize(10)
   doc.setFont("helvetica", "normal")
-  doc.text("Aditya Kumar", 220, 192, { align: "center" })
-  doc.text("Chief Executive Officer", 220, 199, { align: "center" })
+  doc.text("CEO", 220, 192, { align: "center" })
 
   return doc
 }

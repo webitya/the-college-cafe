@@ -6,22 +6,27 @@ const createTransporter = () => {
 
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.error("[v0] Missing email credentials - EMAIL_USER or EMAIL_PASS not set")
-    throw new Error("Email credentials not configured")
+    throw new Error("Email credentials not configured. Please set EMAIL_USER and EMAIL_PASS environment variables.")
   }
 
-  return nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
     port: 587,
-    secure: false, // Use TLS
+    secure: false, // Use STARTTLS
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS, // Should be App Password for Gmail
+      pass: process.env.EMAIL_PASS, // Must be App Password for Gmail with 2FA
     },
     tls: {
       rejectUnauthorized: false,
     },
+    connectionTimeout: 60000, // 60 seconds
+    greetingTimeout: 30000, // 30 seconds
+    socketTimeout: 60000, // 60 seconds
   })
+
+  return transporter
 }
 
 // Email templates
@@ -240,14 +245,27 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
     console.log("[v0] Quiz results:", quizResults)
 
     if (!certificatePDF || !resultsPDF) {
+      console.error("[v0] Missing PDF objects")
+      throw new Error("Certificate and Results PDFs are required")
+    }
+
+    if (typeof certificatePDF.output !== "function" || typeof resultsPDF.output !== "function") {
+      console.error("[v0] Invalid PDF objects - missing output method")
       throw new Error("Invalid PDF objects provided")
     }
 
     const transporter = createTransporter()
 
     console.log("[v0] Testing email connection...")
-    await transporter.verify()
-    console.log("[v0] Email connection verified successfully")
+    try {
+      await transporter.verify()
+      console.log("[v0] Email connection verified successfully")
+    } catch (verifyError) {
+      console.error("[v0] Email connection verification failed:", verifyError)
+      throw new Error(
+        `Email server connection failed: ${verifyError.message}. Please check EMAIL_USER and EMAIL_PASS environment variables.`,
+      )
+    }
 
     // Generate email templates
     const userEmail = generateUserEmailTemplate(userDetails, quizResults)
@@ -260,6 +278,10 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
     try {
       certificateBuffer = certificatePDF.output("arraybuffer")
       console.log("[v0] Certificate PDF buffer generated, size:", certificateBuffer.byteLength)
+
+      if (certificateBuffer.byteLength === 0) {
+        throw new Error("Certificate PDF buffer is empty")
+      }
     } catch (bufferError) {
       console.error("[v0] Certificate PDF buffer generation failed:", bufferError)
       throw new Error("Failed to generate certificate PDF buffer: " + bufferError.message)
@@ -268,25 +290,31 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
     try {
       resultsBuffer = resultsPDF.output("arraybuffer")
       console.log("[v0] Results PDF buffer generated, size:", resultsBuffer.byteLength)
+
+      if (resultsBuffer.byteLength === 0) {
+        throw new Error("Results PDF buffer is empty")
+      }
     } catch (bufferError) {
       console.error("[v0] Results PDF buffer generation failed:", bufferError)
       throw new Error("Failed to generate results PDF buffer: " + bufferError.message)
     }
 
+    const sanitizedName = userDetails.name.replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, "_")
+
     // Send email to user
     const userMailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"The College Cafe" <${process.env.EMAIL_USER}>`, // Added sender name
       to: userDetails.email,
       subject: userEmail.subject,
       html: userEmail.html,
       attachments: [
         {
-          filename: `${userDetails.name.replace(/[^a-zA-Z0-9]/g, "_")}_Certificate_Week${quizResults.week}.pdf`,
+          filename: `${sanitizedName}_Certificate_Week${quizResults.week}.pdf`,
           content: Buffer.from(certificateBuffer),
           contentType: "application/pdf",
         },
         {
-          filename: `${userDetails.name.replace(/[^a-zA-Z0-9]/g, "_")}_Results_Week${quizResults.week}.pdf`,
+          filename: `${sanitizedName}_Results_Week${quizResults.week}.pdf`,
           content: Buffer.from(resultsBuffer),
           contentType: "application/pdf",
         },
@@ -295,7 +323,7 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
 
     // Send email to admin (lead notification)
     const adminMailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"The College Cafe System" <${process.env.EMAIL_USER}>`, // Added sender name
       to: process.env.EMAIL_USER, // Admin receives at the same email
       subject: adminEmail.subject,
       html: adminEmail.html,
@@ -307,20 +335,33 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       userMailOptions.attachments.map((a) => ({ filename: a.filename, size: a.content.length })),
     )
 
-    // Send both emails
-    const [userResult, adminResult] = await Promise.all([
-      transporter.sendMail(userMailOptions),
-      transporter.sendMail(adminMailOptions),
-    ])
+    let userResult, adminResult
 
-    console.log("[v0] Emails sent successfully")
-    console.log("[v0] User email ID:", userResult.messageId)
-    console.log("[v0] Admin email ID:", adminResult.messageId)
+    try {
+      console.log("[v0] Sending user email...")
+      userResult = await transporter.sendMail(userMailOptions)
+      console.log("[v0] User email sent successfully, ID:", userResult.messageId)
+    } catch (userEmailError) {
+      console.error("[v0] Failed to send user email:", userEmailError)
+      throw new Error(`Failed to send user email: ${userEmailError.message}`)
+    }
+
+    try {
+      console.log("[v0] Sending admin email...")
+      adminResult = await transporter.sendMail(adminMailOptions)
+      console.log("[v0] Admin email sent successfully, ID:", adminResult.messageId)
+    } catch (adminEmailError) {
+      console.error("[v0] Failed to send admin email:", adminEmailError)
+      // Don't throw here, user email was successful
+      console.log("[v0] User email was sent successfully despite admin email failure")
+    }
+
+    console.log("[v0] Email sending process completed")
 
     return {
       success: true,
       userEmailId: userResult.messageId,
-      adminEmailId: adminResult.messageId,
+      adminEmailId: adminResult?.messageId || null,
     }
   } catch (error) {
     console.error("[v0] Email sending error:", error)
@@ -329,8 +370,17 @@ export const sendQuizEmails = async (userDetails, quizResults, certificatePDF, r
       code: error.code,
       command: error.command,
       response: error.response,
-      stack: error.stack,
     })
-    throw new Error("Failed to send emails: " + error.message)
+
+    let errorMessage = "Failed to send emails"
+    if (error.message.includes("Invalid login")) {
+      errorMessage = "Email authentication failed. Please check EMAIL_USER and EMAIL_PASS (use App Password for Gmail)"
+    } else if (error.message.includes("connection")) {
+      errorMessage = "Email server connection failed. Please check your internet connection and email settings"
+    } else if (error.message.includes("PDF")) {
+      errorMessage = "PDF generation failed. Please try again"
+    }
+
+    throw new Error(`${errorMessage}: ${error.message}`)
   }
 }
