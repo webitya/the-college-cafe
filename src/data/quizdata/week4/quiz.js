@@ -1,5 +1,5 @@
 export const week4Quiz = {
-  weekNumber: 1,
+  weekNumber: 4,
   title: "General Knowledge - Week 4",
   description: "Test your general knowledge with these 50 questions",
   questions: [
