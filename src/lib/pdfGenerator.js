@@ -15,7 +15,7 @@ export const generateCertificate = (userDetails, quizResults) => {
   doc.setLineWidth(4)
   doc.rect(8, 8, 281, 194)
 
-  // Inner decorative border
+  // Inner decorative borderF
   doc.setDrawColor(0, 123, 191) // Light blue accent
   doc.setLineWidth(1)
   doc.rect(18, 18, 261, 174)
@@ -109,7 +109,7 @@ export const generateCertificate = (userDetails, quizResults) => {
   doc.setFontSize(20)
   doc.setFont("times", "italic") // More signature-like font
   doc.setTextColor(0, 0, 0)
-  doc.text("Aditya Kumar", 220, 180, { align: "center" })
+  doc.text("THE COLLEGE CAFE", 220, 180, { align: "center" })
 
   // Signature line
   doc.setLineWidth(1)
@@ -118,7 +118,7 @@ export const generateCertificate = (userDetails, quizResults) => {
 
   doc.setFontSize(10)
   doc.setFont("helvetica", "normal")
-  doc.text("CEO", 220, 192, { align: "center" })
+  doc.text("", 220, 192, { align: "center" })
 
   return doc
 }
