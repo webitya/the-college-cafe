@@ -20,4 +20,6 @@ export const collegeNewsData = [
     content: "Birla Institute of Technology (BIT) Mesra has been awarded the prestigious NAAC A++ grade...",
     slug: "bit-mesra-achieves-naac-a-plus-plus-grade",
   },
+
+
 ]
