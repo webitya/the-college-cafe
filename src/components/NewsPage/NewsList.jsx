@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Image from "next/image"
+// import Image from "next/image"
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
 import PersonIcon from "@mui/icons-material/Person"
 import { newsData } from "../../data/news/allNews"
@@ -24,7 +24,7 @@ export default function NewsList() {
           >
             <div className="flex flex-col md:flex-row">
               <div className="md:w-1/3 relative h-48 md:h-auto">
-                <Image src={news.image || "/placeholder.svg"} alt={news.title} fill className="object-cover" />
+                <img src={news.image || "/placeholder.svg"} alt={news.title} fill className="object-cover" />
                 <div className="absolute top-4 left-4">
                   <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase">
                     {news.category}
