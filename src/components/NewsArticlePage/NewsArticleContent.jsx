@@ -61,7 +61,7 @@ export default function NewsArticleContent({ article }) {
 
       {/* Featured Image */}
       <div className="relative h-64 lg:h-96 mb-8 rounded-lg overflow-hidden">
-        <Image src={article.image || "/placeholder.svg"} alt={article.title} fill className="object-cover" />
+        <img src={article.image || "/placeholder.svg"} alt={article.title} fill className="object-cover" />
       </div>
 
       {/* Article Content */}
