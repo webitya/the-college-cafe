@@ -5,6 +5,17 @@ import { collegeNewsData } from "./collegeNews"
 // Original news data
 const originalNewsData = [
   {
+  id: 5,
+  title: "Helmet ka Safar: Jung ke Maidan se Bike Ride tak",
+  category: "lifestyle",
+  date: "2025-09-10",
+  image: "/bikesafr.jpeg?w=1200&h=675&fit=crop", 
+  excerpt: "Helmet ka safar ekdum filmi hai — gladiator ke sir se lekar bike rider ke head tak. Aaj ye sirf safety gear nahi, ek fashion aur technology ka combo ban chuka hai.",
+  content: "Socho… tum bike pe nikle ho aur bina helmet ke hawa kha rahe ho. Police uncle rok lein to ek alag dikkat, aur accident ho gaya to seedha life ka full stop. Aaj helmet ek basic safety gear hai. Lekin kya tumhe pata hai iska history ekdum filmy hai?\n\nHelmet ka safar shuru hua tha jung ke battlefield se, aur aaj khatam hua bike riders ke head par. Chalo chalte hain ek time-travel ride par.\n\n### Helmet Ki Pehli Entry (Ancient Era)\n3000 saal pehle jab Mesopotamia aur Greece ke soldiers ladte the, tab unhone bronze aur leather ke helmets banaye. Ye sirf suraksha nahi, dikhawa bhi tha. Gladiators ka helmet dekh ke hi crowd samajh jaata tha kaun hero hai aur kaun villain.\n\n👉 Agar tum gladiator hote, apna helmet kaunsa design karate – scary ya stylish?\n\n### Knight Wala Swag (Medieval Era)\nMiddle Ages me knights ka full armor look sabse powerful hota tha. Steel ke full-face helmets pehne, itne heavy ki bina help ke utarna mushkil. Lekin ek knight ka swag uske shining helmet se hi decide hota tha.\n\n⚔️ Knight ka helmet kabhi-kabhi 5 kilo se upar hota tha. Imagine karo, uske andar fight karna kitna tough hoga.\n\n### World War Helmet (1900s)\nJab First World War aaya, soldiers ke liye “Brodie Helmet” design hua. Simple steel ka tha, bombs aur debris se bachane ke liye. Second World War me helmet aur light aur practical ho gaye.\n\n⚡ Jaise battlefield change hua, waise helmet ka design bhi change hota gaya.\n\n### Bike Safety Revolution (1950s ke baad)\nMotorbike culture grow hua to helmet ko ek naye avatar me laaya gaya. 1950–60 ke dauraan padded helmets aaye jo accident me skull protect karte the. Dheere-dheere law ne helmet ko mandatory kar diya.\n\n🛵 Helmet kharidte waqt sirf look mat dekho, ISI mark zaroor check karo.\n\n### Modern Super-Helmets\nAb helmets sirf safety gear nahi, ek fashion aur technology ka combo ban gaye hain. Carbon-fiber ke lightweight helmets, ventilation system, Bluetooth calling, aur kuch me to AR display tak. Matlab ab helmet tumhe sirf bachata hi nahi, smart bhi bana deta hai.\n\n---\n\n### The End\nHelmet ka safar ekdum filmi raha – gladiator ke sir se lekar bike rider ke head tak. Ek cheez hamesha same rahi: helmet ne hamesha jaan bachayi.",
+  slug: "helmet-ka-safar-jung-se-bike-ride"
+}
+,
+  {
   id: 4,
   title: "Freelancing Kaise Shuru Kare? Zero se Hero banne ki Poori Game Plan",
   category: "career",
