@@ -1,58 +1,41 @@
-import Link from "next/link"
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
 import { newsData } from "../../data/news/allNews"
 
 export default function FeaturedNews() {
-  const featuredNews = newsData.slice(0, 3)
+  const featuredArticles = newsData.slice(0, 3)
 
   return (
-    <section className="bg-white py-2 px-4 sm:px-4 lg:px-4">
-      <div className="mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {featuredNews.map((news, index) => (
-            <Link
-              key={news.id}
-              href={`/news/${news.slug}`}
-              className={`group ${
-                index === 0 ? "lg:col-span-2 lg:row-span-2" : ""
-              } bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden`}
+    <section className="py-12 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Featured Articles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {featuredArticles.map((article) => (
+            <article
+              key={article.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
             >
-              {/* Image wrapper with relative + fixed height */}
-              <div className={`relative ${index === 0 ? "h-64 lg:h-80" : "h-48"}`}>
+              {article.image && (
                 <img
-                  src={news.image || "/placeholder.svg"}
-                  alt={news.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  src={article.image || "/placeholder.svg"}
+                  alt={article.title}
+                  className="w-full h-48 object-cover"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase">
-                    {news.category}
+              )}
+              <div className="p-6">
+                <div className="mb-2">
+                  <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full capitalize">
+                    {article.category}
                   </span>
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className={`p-6 ${index === 0 ? "lg:p-8" : ""}`}>
-                <div className="flex items-center text-gray-500 text-sm mb-3">
-                  <CalendarTodayIcon className="text-sm mr-2" />
-                  {new Date(news.date).toLocaleDateString("en-IN", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">{article.title}</h3>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">{article.excerpt}</p>
+                <div className="flex justify-between items-center">
+                  <time className="text-gray-500 text-sm">{new Date(article.date).toLocaleDateString()}</time>
+                  <a href={`/news/${article.slug}`} className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                    Read More →
+                  </a>
                 </div>
-                <h3
-                  className={`font-semibold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors duration-200 ${
-                    index === 0 ? "text-2xl lg:text-3xl" : "text-xl"
-                  }`}
-                >
-                  {news.title}
-                </h3>
-                <p className={`text-gray-600 ${index === 0 ? "text-lg" : ""}`}>
-                  {news.excerpt}
-                </p>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
       </div>
