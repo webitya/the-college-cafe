@@ -1,86 +1,77 @@
-import Link from "next/link"
-// import Image from "next/image"
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
-import PersonIcon from "@mui/icons-material/Person"
-import { newsData } from "../../data/news/allNews"
+"use client"
+import { newsData as defaultNewsData } from "../../data/news/allNews"
+import { useRouter } from "next/navigation"
 
-export default function NewsList() {
+export default function NewsList({ newsData = defaultNewsData }) {
+  const router = useRouter()
+
+  const handleCardClick = (slug) => {
+    router.push(`/news/${slug}`)
+  }
+
+  if (newsData.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <div className="text-gray-400 mb-4">
+          <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1}
+              d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33"
+            />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-600 mb-2">No articles found</h3>
+        <p className="text-gray-500">Try adjusting your search terms or browse all articles</p>
+      </div>
+    )
+  }
+
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900">Latest News ({newsData.length})</h2>
-        <select className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-          <option>Sort by Latest</option>
-          <option>Sort by Popular</option>
-          <option>Sort by Category</option>
-        </select>
+    <div className="space-y-8">
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">All News</h2>
+        <p className="text-gray-600">Browse all our latest articles and updates</p>
       </div>
 
-      <div className="space-y-8">
-        {newsData.map((news) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {newsData.map((article) => (
           <article
-            key={news.id}
-            className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+            key={article.id}
+            onClick={() => handleCardClick(article.slug)}
+            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/3 relative h-48 md:h-auto">
-                <img src={news.image || "/placeholder.svg"} alt={news.title} fill className="object-cover" />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase">
-                    {news.category}
-                  </span>
-                </div>
+            {article.image && (
+              <div className="aspect-video">
+                <img
+                  src={article.image || "/placeholder.svg"}
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="md:w-2/3 p-6">
-                <div className="flex items-center text-gray-500 text-sm mb-3 space-x-4">
-                  <div className="flex items-center">
-                    <CalendarTodayIcon className="text-sm mr-1" />
-                    {new Date(news.date).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </div>
-                  <div className="flex items-center">
-                    <PersonIcon className="text-sm mr-1" />
-                    Admin
-                  </div>
-                </div>
-                <Link href={`/news/${news.slug}`}>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-yellow-600 transition-colors duration-200 cursor-pointer">
-                    {news.title}
-                  </h3>
-                </Link>
-                <p className="text-gray-600 mb-4 line-clamp-3">{news.excerpt}</p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-2">
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Education</span>
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Important</span>
-                  </div>
-                  <Link
-                    href={`/news/${news.slug}`}
-                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm"
-                  >
-                    Read More →
-                  </Link>
-                </div>
+            )}
+            <div className="p-4">
+              <div className="mb-2">
+                <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-medium px-2 py-1 rounded-full capitalize">
+                  {article.category}
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight line-clamp-2">{article.title}</h3>
+              <p className="text-gray-600 text-sm mb-3 line-clamp-2">{article.excerpt}</p>
+              <div className="flex justify-between items-center text-xs text-gray-500">
+                <time>
+                  {new Date(article.date).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+                <span className="text-blue-600 font-medium">Read More →</span>
               </div>
             </div>
           </article>
         ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center mt-12">
-        <nav className="flex space-x-2">
-          <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">
-            Previous
-          </button>
-          <button className="px-4 py-2 bg-yellow-500 text-white rounded-lg">1</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">2</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">3</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">Next</button>
-        </nav>
       </div>
     </div>
   )
