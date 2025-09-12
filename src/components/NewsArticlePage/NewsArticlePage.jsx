@@ -183,24 +183,28 @@ export default function NewsArticlePage({ slug }) {
     <div className="min-h-screen bg-white">
       <Header />
       <main className="w-full">
-        <div className="relative w-full h-[60vh] lg:h-[70vh] overflow-hidden">
-          {article.image && (
-            <img src={article.image || "/placeholder.svg"} alt={article.title} className="w-full h-full object-cover" />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        <div className="relative w-full h-64 sm:h-80 lg:h-96 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-white bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('${article.image || "/news-article-hero-background.jpg"}')`,
+            }}
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0" />
 
-          <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-16">
-            <div className="max-w-5xl mx-auto">
-              <div className="mb-6">
-                <span className="inline-block bg-white/25 backdrop-blur-md text-white text-sm font-semibold px-6 py-3 rounded-full capitalize border border-white/40 shadow-lg">
+          <div className="relative z-10 w-full h-full px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="mb-4 sm:mb-6">
+                <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full capitalize border border-white/30">
                   {article.category}
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight text-balance">
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight text-balance px-2">
                 {article.title}
               </h1>
-              <div className="flex items-center text-white/95 text-base">
-                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center text-white/90 text-sm sm:text-base">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -221,17 +225,17 @@ export default function NewsArticlePage({ slug }) {
         </div>
 
         <div className="w-full bg-white">
-          <div className="max-w-5xl mx-auto px-8 lg:px-16 py-16 lg:py-20">
-            <article className="prose prose-xl prose-gray max-w-none">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+            <article className="prose prose-lg prose-gray max-w-none">
               {article.excerpt && (
-                <div className="not-prose mb-16">
-                  <p className="text-2xl lg:text-3xl text-gray-600 leading-relaxed font-light text-balance border-l-4 border-blue-500 pl-8 italic bg-gray-50 py-6 rounded-r-lg">
+                <div className="not-prose mb-8 sm:mb-12">
+                  <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed font-light text-balance border-l-4 border-blue-500 pl-4 sm:pl-6 italic bg-gray-50 py-4 sm:py-6 rounded-r-lg">
                     {article.excerpt}
                   </p>
                 </div>
               )}
 
-              <div className="article-content space-y-10">
+              <div className="article-content space-y-6 sm:space-y-8">
                 <FormattedContent content={article.content} />
               </div>
             </article>
