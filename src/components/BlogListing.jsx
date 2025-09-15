@@ -176,7 +176,19 @@ export default function BlogListing() {
                   className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {blog.featuredImage && (
-                    <div className="aspect-video relative overflow-hidden">
+                    // <div className="aspect-video relative overflow-hidden">
+                    //   <img
+                    //     src={
+                    //       extractImageUrl(blog.featuredImage) || "/placeholder.svg?height=240&width=400&query=blog post"
+                    //     }
+                    //     alt={blog.title}
+                    //     width={400}
+                    //     height={240}
+                    //     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    //     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    //   />
+                    // </div>
+                      <div className="aspect-video relative overflow-hidden">
                       <img
                         src={
                           `${blog.featuredImage}` || "/placeholder.svg?height=240&width=400&query=blog post"
