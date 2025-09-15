@@ -12,19 +12,12 @@ export default function Header() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-       { name: "Current Affairs", href: "/current-affairs" },
-         { name: "Library", href: "/library" },
-             { name: "Jobs", href: "/jobs" },
+    { name: "Current Affairs", href: "/current-affairs" },
+    { name: "Library", href: "/library" },
+    { name: "Jobs", href: "/jobs" },
     { name: "Colleges", href: "/colleges" },
-    // { name: "JEE", href: "/jee" },
-    // { name: "NEET", href: "/neet" },
-    // { name: "UPSC", href: "/upsc" },
-
-  
-      { name: "Weekly Quiz", href: "/quiz" },
-
-    // { name: "College News", href: "/college-news" },
- 
+    { name: "Government Jobs", href: "/government-jobs" },
+    { name: "Weekly Quiz", href: "/quiz" },
     { name: "Latest News", href: "/news" },
   ]
 

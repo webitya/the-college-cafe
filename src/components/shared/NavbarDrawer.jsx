@@ -9,18 +9,16 @@ import InfoIcon from "@mui/icons-material/Info"
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined"
 import WorkIcon from "@mui/icons-material/Work"
 import NewspaperIcon from "@mui/icons-material/Newspaper"
-import ScienceIcon from "@mui/icons-material/Science"
 import GavelIcon from "@mui/icons-material/Gavel"
 import MenuBookIcon from "@mui/icons-material/MenuBook"
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital"
-import PublicIcon from "@mui/icons-material/Public"   // 🌍 Current Affairs
-import CampaignIcon from "@mui/icons-material/Campaign" // 📢 College News
+import PublicIcon from "@mui/icons-material/Public"
+import CampaignIcon from "@mui/icons-material/Campaign"
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance"
 import DonateButton from "./DonateButton"
 
 export default function NavbarDrawer({ isOpen, onClose }) {
   const pathname = usePathname()
 
-  // 🔒 Prevent body scroll when drawer is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -36,13 +34,12 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "Home", href: "/", icon: HomeIcon },
     { name: "About Us", href: "/about", icon: InfoIcon },
     { name: "Colleges", href: "/colleges", icon: SchoolOutlinedIcon },
-    // { name: "JEE", href: "/jee", icon: ScienceIcon },
-    // { name: "NEET", href: "/neet", icon: LocalHospitalIcon },
     { name: "Weekly QUIZ", href: "/quiz", icon: GavelIcon },
     { name: "Library", href: "/library", icon: MenuBookIcon },
     { name: "Jobs", href: "/jobs", icon: WorkIcon },
-    { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },   // ✅ Changed
-    { name: "College News", href: "/college-news", icon: CampaignIcon },       // ✅ Changed
+    { name: "Government Jobs", href: "/government-jobs", icon: AccountBalanceIcon },
+    { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },
+    { name: "College News", href: "/college-news", icon: CampaignIcon },
     { name: "Latest News", href: "/news", icon: NewspaperIcon },
   ]
 
@@ -66,14 +63,9 @@ export default function NavbarDrawer({ isOpen, onClose }) {
         <div className="flex items-center justify-between p-4 border-b border-white/40 bg-white/50 backdrop-blur-md">
           <div className="flex items-center space-x-2">
             <SchoolIcon className="text-yellow-500 text-xl" />
-            <span className="text-base font-semibold text-gray-800">
-              THE COLLEGE CAFE
-            </span>
+            <span className="text-base font-semibold text-gray-800">THE COLLEGE CAFE</span>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-          >
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
             <CloseIcon className="text-gray-600" />
           </button>
         </div>
@@ -84,8 +76,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
           <nav className="flex flex-col p-4 space-y-1">
             {navItems.map((item) => {
               const IconComponent = item.icon
-              const isActive =
-                pathname === item.href || pathname.startsWith(item.href + "/")
+              const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
 
               return (
                 <Link
@@ -100,9 +91,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
                     }`}
                 >
                   <IconComponent
-                    className={`text-lg transition-colors duration-200 ${
-                      isActive ? "text-white" : "text-gray-500"
-                    }`}
+                    className={`text-lg transition-colors duration-200 ${isActive ? "text-white" : "text-gray-500"}`}
                   />
                   <span className="text-sm font-medium">{item.name}</span>
                 </Link>
@@ -123,11 +112,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs transition"
               >
-                <img
-                  src="/webitya.jpeg"
-                  alt="Webitya Logo"
-                  className="w-4 h-4 rounded-full"
-                />
+                <img src="/webitya.jpeg" alt="Webitya Logo" className="w-4 h-4 rounded-full" />
                 <span className="text-gray-600">
                   Powered by{" "}
                   <span className="font-semibold bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">

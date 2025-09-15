@@ -1,0 +1,66 @@
+// Sample job data - this will be moved to MongoDB later
+export const jobsData = [
+  {
+    id: 1,
+    title: "Frontend Developer",
+    company: "Tech Solutions Inc",
+    salary: "₹8-12 LPA",
+    location: "Bangalore",
+    experience: "2-4 years",
+    description:
+      "We are looking for a skilled Frontend Developer to join our dynamic team. You will be responsible for developing user-facing web applications using modern JavaScript frameworks.",
+    requirements: [
+      "Bachelor's degree in Computer Science or related field",
+      "2+ years of experience with React.js",
+      "Strong knowledge of HTML, CSS, JavaScript",
+      "Experience with responsive design",
+      "Good communication skills",
+    ],
+    skills: ["React", "JavaScript", "HTML", "CSS", "Git"],
+    jobType: "Full-time",
+    postedDate: "2024-01-15",
+    applicationDeadline: "2024-02-15",
+  },
+  {
+    id: 2,
+    title: "Backend Developer",
+    company: "Digital Innovations Ltd",
+    salary: "₹10-15 LPA",
+    location: "Mumbai",
+    experience: "3-5 years",
+    description:
+      "Join our backend team to build scalable server-side applications. You'll work with modern technologies and contribute to high-performance systems.",
+    requirements: [
+      "Bachelor's degree in Computer Science",
+      "3+ years of Node.js experience",
+      "Experience with databases (MongoDB, PostgreSQL)",
+      "Knowledge of RESTful APIs",
+      "Understanding of cloud platforms",
+    ],
+    skills: ["Node.js", "MongoDB", "Express", "AWS", "Docker"],
+    jobType: "Full-time",
+    postedDate: "2024-01-10",
+    applicationDeadline: "2024-02-10",
+  },
+  {
+    id: 3,
+    title: "Full Stack Developer",
+    company: "StartupXYZ",
+    salary: "₹12-18 LPA",
+    location: "Hyderabad",
+    experience: "4-6 years",
+    description:
+      "We're seeking a versatile Full Stack Developer to work on both frontend and backend development. You'll be part of a fast-paced startup environment.",
+    requirements: [
+      "Bachelor's degree in Engineering",
+      "4+ years of full stack development",
+      "Proficiency in React and Node.js",
+      "Database design experience",
+      "Agile development experience",
+    ],
+    skills: ["React", "Node.js", "MongoDB", "TypeScript", "AWS"],
+    jobType: "Full-time",
+    postedDate: "2024-01-12",
+    applicationDeadline: "2024-02-12",
+  },
+]
