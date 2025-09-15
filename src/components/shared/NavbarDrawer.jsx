@@ -42,7 +42,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },
     { name: "Blog", href: "/blog", icon: ArticleIcon },
     { name: "College News", href: "/college-news", icon: CampaignIcon },
-    { name: "Latest News", href: "/news", icon: NewspaperIcon },
+    // { name: "Latest News", href: "/news", icon: NewspaperIcon },
   ]
 
   return (

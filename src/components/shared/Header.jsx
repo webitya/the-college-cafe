@@ -19,7 +19,7 @@ export default function Header() {
     { name: "Government Jobs", href: "/government-jobs" },
     { name: "Blog", href: "/blog" },
     { name: "Weekly Quiz", href: "/quiz" },
-    { name: "Latest News", href: "/news" },
+    // { name: "Latest News", href: "/news" },
   ]
 
   return (
