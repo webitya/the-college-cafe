@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import BlogPost from "../../../components/BlogPost"
-import Header from "../../components/shared/Header"
-import Footer from "../../components/shared/Footer"
+import Header from "../../../components/shared/Header"
+import Footer from "../../../components/shared/Footer"
 
 async function getBlogPost(slug) {
   try {
