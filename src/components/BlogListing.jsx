@@ -177,7 +177,7 @@ export default function BlogListing() {
                 >
                   {blog.featuredImage && (
                     <div className="aspect-video relative overflow-hidden">
-                      <Image
+                      <img
                         src={
                           extractImageUrl(blog.featuredImage) || "/placeholder.svg?height=240&width=400&query=blog post"
                         }

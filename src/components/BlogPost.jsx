@@ -224,7 +224,7 @@ export default function BlogPost({ blog }) {
         {blog.featuredImage && (
           <div className="mb-8">
             <div className="aspect-video relative overflow-hidden rounded-lg shadow-sm">
-              <Image
+              <img
                 src={
                   extractImageUrl(blog.featuredImage) ||
                   "/placeholder.svg?height=400&width=800&query=blog featured image" ||
