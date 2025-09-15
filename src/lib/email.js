@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer"
 
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
@@ -73,7 +73,7 @@ export const sendApplicationEmail = async (applicantData, jobData) => {
     await transporter.sendMail(adminMailOptions)
     return { success: true }
   } catch (error) {
-    console.error("Email sending failed:", error)
+    console.error("❌ Email sending failed:", error)
     return { success: false, error: error.message }
   }
 }
