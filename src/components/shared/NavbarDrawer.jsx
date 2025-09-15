@@ -14,6 +14,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook"
 import PublicIcon from "@mui/icons-material/Public"
 import CampaignIcon from "@mui/icons-material/Campaign"
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance"
+import ArticleIcon from "@mui/icons-material/Article"
 import DonateButton from "./DonateButton"
 
 export default function NavbarDrawer({ isOpen, onClose }) {
@@ -39,6 +40,7 @@ export default function NavbarDrawer({ isOpen, onClose }) {
     { name: "Jobs", href: "/jobs", icon: WorkIcon },
     { name: "Government Jobs", href: "/government-jobs", icon: AccountBalanceIcon },
     { name: "Current Affairs", href: "/current-affairs", icon: PublicIcon },
+    { name: "Blog", href: "/blog", icon: ArticleIcon },
     { name: "College News", href: "/college-news", icon: CampaignIcon },
     { name: "Latest News", href: "/news", icon: NewspaperIcon },
   ]

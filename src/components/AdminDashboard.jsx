@@ -7,9 +7,12 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance"
 import PeopleIcon from "@mui/icons-material/People"
 import LogoutIcon from "@mui/icons-material/Logout"
 import AddIcon from "@mui/icons-material/Add"
+import ArticleIcon from "@mui/icons-material/Article"
+import VisibilityIcon from "@mui/icons-material/Visibility"
 import JobManagement from "./JobManagement"
 import GovernmentJobManagement from "./GovernmentJobManagement"
 import ApplicationsManagement from "./ApplicationsManagement"
+import BlogManagement from "./BlogManagement"
 
 export default function AdminDashboard({ onLogout }) {
   const [activeTab, setActiveTab] = useState("dashboard")
@@ -18,6 +21,8 @@ export default function AdminDashboard({ onLogout }) {
     totalGovJobs: 0,
     totalApplications: 0,
     recentApplications: 0,
+    totalBlogs: 0,
+    publishedBlogs: 0,
   })
 
   useEffect(() => {
@@ -41,6 +46,7 @@ export default function AdminDashboard({ onLogout }) {
     { id: "jobs", label: "Private Jobs", icon: WorkIcon },
     { id: "government-jobs", label: "Government Jobs", icon: AccountBalanceIcon },
     { id: "applications", label: "Applications", icon: PeopleIcon },
+    { id: "blogs", label: "Blog Management", icon: ArticleIcon },
   ]
 
   return (
@@ -149,12 +155,36 @@ export default function AdminDashboard({ onLogout }) {
                       </div>
                     </div>
                   </div>
+
+                  <div className="bg-white rounded-lg shadow-sm p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                        <ArticleIcon className="text-indigo-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{stats.totalBlogs}</h3>
+                        <p className="text-gray-600">Total Blogs</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-lg shadow-sm p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                        <VisibilityIcon className="text-emerald-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{stats.publishedBlogs}</h3>
+                        <p className="text-gray-600">Published Blogs</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Quick Actions */}
                 <div className="bg-white rounded-lg shadow-sm p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <button
                       onClick={() => setActiveTab("jobs")}
                       className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
@@ -175,6 +205,16 @@ export default function AdminDashboard({ onLogout }) {
                         <p className="text-sm text-gray-600">Create new government opportunity</p>
                       </div>
                     </button>
+                    <button
+                      onClick={() => setActiveTab("blogs")}
+                      className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      <ArticleIcon className="text-indigo-600" />
+                      <div className="text-left">
+                        <h4 className="font-semibold text-gray-900">Write New Blog</h4>
+                        <p className="text-sm text-gray-600">Create engaging content</p>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -183,6 +223,7 @@ export default function AdminDashboard({ onLogout }) {
             {activeTab === "jobs" && <JobManagement />}
             {activeTab === "government-jobs" && <GovernmentJobManagement />}
             {activeTab === "applications" && <ApplicationsManagement />}
+            {activeTab === "blogs" && <BlogManagement />}
           </div>
         </div>
       </div>

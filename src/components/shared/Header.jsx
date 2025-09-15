@@ -17,6 +17,7 @@ export default function Header() {
     { name: "Jobs", href: "/jobs" },
     { name: "Colleges", href: "/colleges" },
     { name: "Government Jobs", href: "/government-jobs" },
+    { name: "Blog", href: "/blog" },
     { name: "Weekly Quiz", href: "/quiz" },
     { name: "Latest News", href: "/news" },
   ]

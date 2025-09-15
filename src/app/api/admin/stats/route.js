@@ -24,11 +24,18 @@ export async function GET() {
       appliedAt: { $gte: weekAgo },
     })
 
+    // Get blogs count from MongoDB
+    const blogsCollection = db.collection("blogs")
+    const totalBlogs = await blogsCollection.countDocuments()
+    const publishedBlogs = await blogsCollection.countDocuments({ published: true })
+
     const stats = {
       totalJobs,
       totalGovJobs,
       totalApplications,
       recentApplications,
+      totalBlogs,
+      publishedBlogs,
     }
 
     return NextResponse.json({

@@ -9,27 +9,42 @@ export default function LatestNews() {
   return (
     <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Latest News & Updates</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Latest News & Updates
+          </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Stay updated with the latest education news and announcements
           </p>
         </div>
 
+        {/* News Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {latestNews.map((news) => (
             <article
               key={news.id}
               className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
             >
+              {/* Image */}
               <div className="relative h-48">
-                <img src={news.image || "/placeholder.svg"} alt={news.title} fill className="object-cover" />
+                <Image
+                  src={news.image || "/placeholder.svg"}
+                  alt={news.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw,
+                         (max-width: 1200px) 50vw,
+                         33vw"
+                />
                 <div className="absolute top-4 left-4">
                   <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase">
                     {news.category}
                   </span>
                 </div>
               </div>
+
+              {/* Content */}
               <div className="p-6">
                 <div className="flex items-center text-gray-500 text-sm mb-3">
                   <CalendarTodayIcon className="text-sm mr-2" />
@@ -39,9 +54,14 @@ export default function LatestNews() {
                     day: "numeric",
                   })}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">{news.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                  {news.title}
+                </h3>
                 <p className="text-gray-600 mb-4 line-clamp-3">{news.excerpt}</p>
-                <Link href={`/news/${news.slug}`} className="text-yellow-600 hover:text-yellow-700 font-medium">
+                <Link
+                  href={`/news/${news.slug}`}
+                  className="text-yellow-600 hover:text-yellow-700 font-medium"
+                >
                   Read More →
                 </Link>
               </div>
@@ -49,6 +69,7 @@ export default function LatestNews() {
           ))}
         </div>
 
+        {/* CTA Button */}
         <div className="text-center mt-12">
           <Link
             href="/news"
