@@ -7,5 +7,5 @@ export const metadata = {
 }
 
 export default function Home() {
-  return <HomePage />
+  return <h1>Server Overload</h1>
 }
