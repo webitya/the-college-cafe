@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
 import VisibilityIcon from "@mui/icons-material/Visibility"
